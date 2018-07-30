@@ -1,2 +1,2 @@
-class Soldier < ActiveRecord::Base[5.0]
+class Soldier < ActiveRecord::Base
 end

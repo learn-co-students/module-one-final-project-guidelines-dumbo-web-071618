@@ -1,2 +1,2 @@
-class Monster < ActiveRecord::Base[5.0]
+class Monster < ActiveRecord::Base
 end
