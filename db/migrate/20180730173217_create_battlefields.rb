@@ -1,10 +1,9 @@
 class CreateBattlefields < ActiveRecord::Migration[5.0]
   def change
     create_table :battlefield do |t|
-      t.string :name
-      t.integer :hp
-      t.string :ability
-      t.integer :battlefield_id
+      t.string :battlefield_name
+      t.string :soldier
+      t.string :monster
     end
   end
 end
