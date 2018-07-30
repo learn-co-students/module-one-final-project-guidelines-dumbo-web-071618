@@ -6,4 +6,6 @@ puts "Welcome Soldier, what is your name?"
 
 name = gets.chomp
 
-p
+soldier_1 = Soldier.create(name: name)
+
+puts "Welcome #{name} your hp is #{soldier_1.hp}"
