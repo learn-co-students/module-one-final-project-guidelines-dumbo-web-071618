@@ -8,7 +8,4 @@ name = gets.chomp
 
 soldier_exist(name)
 
-menu_choice = menu
-
-# if menu_choice == "Choose your Battlefield"
-  
+menu_responsiblities(menu)
