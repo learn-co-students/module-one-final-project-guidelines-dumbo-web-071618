@@ -18,4 +18,21 @@ class User < ActiveRecord::Base
         todo.file_path == file_path
       end
     end
+
+    #TODO: refactor this
+    def select_specific_todos
+    array = self.list_all_todos
+    array_of_file_path = array.map{|todo| todo.file_path }
+    prompt = TTY::Prompt.new
+    result = prompt.select("Choose a file path you would like to go in to.", array_of_file_path)
+
+      array = array.select do |todo|
+        todo.file_path == result
+      end
+
+    array_of_line_number_and_comment = array.map{|todo| "#{todo.line_number} #{todo.comment}"}
+    prompt.select("Choose what todo you would like to go to.", array_of_line_number_and_comment)
+
+    end
+
 end

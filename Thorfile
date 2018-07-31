@@ -1,14 +1,6 @@
 require_relative "config/environment.rb"
 
-prompt = TTY::Prompt.new
 
-prompt.select("Choose an option.") do |menu|
-  menu.choice 'Display all Todos.'
-  menu.choice 'Display Todos for file.'
-  menu.choice 'Login User'
-  menu.choice 'Scan all Files in Present Working Directory.'
-  menu.choice 'Display all Todos for logged in User.'
-end
 
 class Doit < Thor
   desc "all", "Returns all todos for all user"
@@ -39,24 +31,32 @@ class Doit < Thor
   desc "user", "Returns all todo's for logged in user"
   method_option :scan, :aliases => "-u", :desc => "Returns all the todos for the user"
   def user
-    #TODO: Return all todos for a particular user
+    #TODO: Implement return all of users todos
   end
-<<<<<<< Updated upstream
+
+
+
+
 
   desc "editor", "choose your default editor"
   method_option :scan, :aliases => "-e", :desc => <<-LONGDESC
     Sets the default editor for opening todos.
     doit -e <option>
-    
+
     doit -e 1  #if Visual Studio Code
     doit -e 2  #if Atom
     doit -e 3  #if Sublime
   LONGDESC
 
-  def editor(selection)
-    FileMgmt.set_editor(selection)
+  def editor
+    prompt = TTY::Prompt.new
+      result = prompt.select("Choose an Editor.") do |menu|
+      menu.choice 'Visual Studio Code.',1
+      menu.choice 'Atom',2
+      menu.choice 'Sublime',3
+    end
+    FileMgmt.set_editor(result)
   end
+
+
 end
-=======
-end
->>>>>>> Stashed changes
