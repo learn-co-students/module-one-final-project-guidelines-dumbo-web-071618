@@ -5,6 +5,12 @@ monster_4 = Monster.create(name: "Captain", hp: 25, ability: "aim")
 monster_5 = Monster.create(name: "Eric,the most Evil and Ultimate and Supreme leader", hp: 30, ability: "aim")
 
 mars = Battlefield.create(name: "Mars", monster: monster_1)
+jupiter = Battlefield.create(name: "Jupiter", monster_2)
+saturn = Battlefield.create(name: "Saturn", monster_3)
+venus = Battlefield.create(name: "Venus", monster_4)
+earth = Battlefield.create(name: "Earth", monster_5)
+
+
 
 
 
