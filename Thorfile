@@ -1,6 +1,6 @@
 require_relative "config/environment.rb"
 
-class Doit < Thor
+class tdl < Thor
   desc "all", "Returns all todos for all user"
   method_option :all, :aliases => "-a", :desc => "Displays all todos"
   #TODO: pull implementation into method?

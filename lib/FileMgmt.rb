@@ -54,7 +54,7 @@ class FileMgmt
                 all_todos_hash[file_path.path] = tmp_holder
             end
         end
-        all_todos_hash
+        self.persist_scans(all_todos_hash)
     end
 
     def self.open_at_line(line_num, file_path)
@@ -73,5 +73,14 @@ class FileMgmt
         elsif selection == 3
             @@EDITOR = 'subl'
         end
+    end
+
+    def self.persist_scans(scans)
+        scans.each do |file_path|
+            file_path.each do |line_num, comment|
+                Todo.create(file_path: file_path , comment:comment, line_number: line_num)
+            end
+        end
+        scans
     end
 end
