@@ -15,7 +15,7 @@ class Doit < Thor
   end
 
   desc "login", "Login user"
-  method_option :scan, :aliases => "-u", :desc => "If user exists, sets that user as the current logged in user."
+  method_option :scan, :aliases => "-l", :desc => "If user exists, sets that user as the current logged in user."
   def login
     #TODO: if user exists, log in user
   end

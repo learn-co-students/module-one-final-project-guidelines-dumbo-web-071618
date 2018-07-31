@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
     has_many :todos
+    has_many :projects, through: :todo
 
     def create_todo(file_path, comment, category)
         new_todo =  self.todos.build(file_path: file_path, comment: comment)
