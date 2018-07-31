@@ -1,5 +1,6 @@
 
 class User < ActiveRecord::Base
+
   has_many :favbars
   has_many :bars, through: :favbars
 
