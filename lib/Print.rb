@@ -1,3 +1,4 @@
+
 class Print
 
   def self.print_all
@@ -15,4 +16,7 @@ class Print
     end
   end
 
+  def print_user_todos(bryan)
+
+  end
 end
