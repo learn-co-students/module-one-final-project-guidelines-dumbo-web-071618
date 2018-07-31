@@ -1,10 +1,10 @@
 class User < ActiveRecord::Base
     has_many :todos
 
-    def create_todo(file_path, comment, category)
+    def build_todo(file_path, comment, category)
         new_todo =  self.todos.build(file_path: file_path, comment: comment)
         new_todo.category = category
-        new_todo
+        new_todo.save
     end
 
     def list_all_todos
