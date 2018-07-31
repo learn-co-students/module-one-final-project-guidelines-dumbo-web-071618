@@ -4,7 +4,6 @@ class CreateMonsters < ActiveRecord::Migration[5.0]
       t.string :name
       t.integer :hp
       t.string :ability
-      t.integer :battlefield_id
     end
   end
 end
