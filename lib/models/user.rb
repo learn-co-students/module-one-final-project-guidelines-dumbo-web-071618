@@ -1,7 +1,7 @@
 
 class User < ActiveRecord::Base
   has_many :bar_lists
-  has_many :bars, through: :bar_list
+  # has_many :bars, through: :bar_lists
 
   def self.create_user_or_login
     puts "Welcome, please enter your username"
