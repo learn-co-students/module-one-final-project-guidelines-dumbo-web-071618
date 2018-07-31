@@ -9,3 +9,5 @@ name = gets.chomp
 soldier_exist(name)
 
 menu_responsiblities(menu)
+
+# monster_menu

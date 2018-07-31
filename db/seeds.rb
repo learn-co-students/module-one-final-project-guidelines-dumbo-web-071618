@@ -10,6 +10,7 @@ mars = Battlefield.create(name: "Mars", monster: monster_1)
 
 
 
+
 # monsters = [
 #   {name: "Private", hp: 10, ability: "aim"},
 #   {name: "Corporal", hp: 10, ability: "aim"},
