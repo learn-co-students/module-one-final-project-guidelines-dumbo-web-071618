@@ -8,7 +8,7 @@ class Soldier < ActiveRecord::Base
   after_initialize :init
 
   def arr_abilities
-    ["shoot", "kiss", "kick", "love", "sleep"]
+    ["counter", "aim", "kiss", "sleep"]
   end
 
   def init
