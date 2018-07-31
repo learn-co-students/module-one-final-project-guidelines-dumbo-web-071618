@@ -1,4 +1,5 @@
 class Battlefield < ActiveRecord::Base
-  belongs_to :soldiers
+  has_many :soldier_battlefields
+  has_many :soldiers, through: :soldier_battlefields
   belongs_to :monsters
 end
