@@ -28,4 +28,4 @@ class YelpAdapter
   end
 end
 
-binding.pry
+# binding.pry
