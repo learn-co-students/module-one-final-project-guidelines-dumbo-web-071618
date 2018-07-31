@@ -15,7 +15,6 @@ DEFAULT_LOCATION = "New York, NY"
 SEARCH_LIMIT = 5
 
 class YelpAdapter
-  attr_accessor :business_id
 
   def self.search(location, term='bar')
     url = "#{API_HOST}#{SEARCH_PATH}"
@@ -27,19 +26,6 @@ class YelpAdapter
     response = HTTP.auth("Bearer #{API_KEY}").get(url, params: params)
     response.parse["businesses"]
   end
-
-  def self.business_reviews(business_id)
-    url = "#{API_HOST}#{BUSINESS_PATH}#{business_id}/reviews"
-    response = HTTP.auth("Bearer #{API_KEY}").get(url)
-    response.parse["reviews"]
-  end
-
-  def business
-    url = "#{API_HOST}#{BUSINESS_PATH}#{@business_id}"
-    response = HTTP.auth("Bearer #{API_KEY}").get(url)
-    response.parse
-  end
-
 end
 
-binding.pry
+# binding.pry
