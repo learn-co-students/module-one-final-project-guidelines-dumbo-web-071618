@@ -1,13 +1,7 @@
 require_relative '../config/environment'
 
-gabe = User.new(name: "gabe")
-refactor = Category.new(name: "Refactor")
-gabe.create_todo("path/to/file", "This is a test comment for gabriel", refactor)
-gabe.save
+puts FileMgmt.scan_file("/Users/agent/Development/code/module-one-final-project-guidelines-dumbo-web-071618/Thorfile")
 
-FileMgmt.print_file_name
-
-# gabe.list_all_todos
 
 
 
