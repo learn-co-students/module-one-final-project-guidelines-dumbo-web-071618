@@ -13,7 +13,7 @@ end
 
 def menu
   prompt = TTY::Prompt.new
-choice = prompt.select("Choose your destiny?") do |menu|
+  choice = prompt.select("Choose your destiny?") do |menu|
     menu.choice 'Choose your Battlefield'
     menu.choice 'Get new Weapons'
     menu.choice 'Exit'
@@ -24,7 +24,7 @@ end
 def menu_responsiblities(choice)
   case choice
   when 'Choose your Battlefield'
-    puts "You are now fighting in"
+    puts "You are now fighting in "
   when 'Get new Weapons'
     puts "Ohh snap no weapons"
   when 'Rest'
