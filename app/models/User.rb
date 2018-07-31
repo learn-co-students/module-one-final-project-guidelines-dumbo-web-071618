@@ -12,4 +12,10 @@ class User < ActiveRecord::Base
             puts "id: #{todo.id} | path: #{todo.file_path} | comment: #{todo.comment}"
         end
     end
+
+    def find_by_file_path(file_path)
+      Todo.all.select do |todo|
+        todo.file_path == file_path
+      end
+    end
 end
