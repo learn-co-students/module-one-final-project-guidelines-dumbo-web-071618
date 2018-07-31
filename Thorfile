@@ -1,8 +1,12 @@
 require_relative "config/environment.rb"
 
+<<<<<<< HEAD
 
 
 class Doit < Thor
+=======
+class tdl < Thor
+>>>>>>> 1b94ed40c6b8da42c3327295ab0644ed7de37278
   desc "all", "Returns all todos for all user"
   method_option :all, :aliases => "-a", :desc => "Displays all todos"
   #TODO: pull implementation into method?
@@ -17,7 +21,7 @@ class Doit < Thor
   end
 
   desc "login", "Login user"
-  method_option :scan, :aliases => "-u", :desc => "If user exists, sets that user as the current logged in user."
+  method_option :scan, :aliases => "-l", :desc => "If user exists, sets that user as the current logged in user."
   def login
     #TODO: if user exists, log in user
   end

@@ -2,9 +2,14 @@ require_relative "../config/environment.rb"
 
 class FileMgmt
     @@EDITOR = "atom"
+    @@EXTENSIONS = {".rb": "#", ".html": "<!-", ".java": "//", ".js": "//", ".cpp": "//", ".h": "//", ".css": "//"}
 
     def self.editor
         @@EDITOR
+    end
+
+    def self.extensions
+        @@EXTENSIONS
     end
 
     def self.get_all_files_in_dir(dir_path = Dir.pwd)
@@ -31,7 +36,7 @@ class FileMgmt
     def self.scan(file_path)
         todo_hash = {}
         File.foreach(file_path).with_index do |line, line_num|
-            if line.include?("#TODO:")
+            if line.include?("#{self.extensions[File.extname(file_path)]}TODO:")
                 text = "#{line}"
                 text.gsub!(/#TODO:/, '')
                 text.strip!
@@ -40,7 +45,7 @@ class FileMgmt
         end
         todo_hash
     end
-
+    
     def self.scan_all(file_paths)
         all_todos_hash = {}
         file_paths.each do |file_path|
@@ -49,7 +54,7 @@ class FileMgmt
                 all_todos_hash[file_path.path] = tmp_holder
             end
         end
-        all_todos_hash
+        self.persist_scans(all_todos_hash)
     end
 
     def self.open_at_line(line_num, file_path)
@@ -68,5 +73,14 @@ class FileMgmt
         elsif selection == 3
             @@EDITOR = 'subl'
         end
+    end
+
+    def self.persist_scans(scans)
+        scans.each do |file_path|
+            file_path.each do |line_num, comment|
+                Todo.create(file_path: file_path , comment:comment, line_number: line_num)
+            end
+        end
+        scans
     end
 end
