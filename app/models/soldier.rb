@@ -2,8 +2,8 @@ class Soldier < ActiveRecord::Base
 
 
 
-  has_many :battlefields
-  has_many :enemies, through: :battlefields
+  has_many :soldier_battlefields
+  has_many :battlefields, through: :soldier_battlefields
 
   after_initialize :init
 
