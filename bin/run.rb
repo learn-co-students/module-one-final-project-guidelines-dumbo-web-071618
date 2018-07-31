@@ -8,6 +8,7 @@ name = gets.chomp
 
 soldier_exist(name)
 
+puts `clear`
 menu_responsiblities(menu)
 
 # monster_menu
