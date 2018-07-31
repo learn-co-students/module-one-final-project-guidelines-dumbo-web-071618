@@ -13,7 +13,7 @@ class Doit < Thor
   desc "file", "Display todo's for file"
   method_option :scan, :aliases => "-f", :desc => "Display todo's for a file based on the file path passed in"
   def scan(file_path)
-    #TODO: Implement return todos for particular file
+    Todo.find_by(file_path: file_path)
   end
 
   desc "login", "Login user"
