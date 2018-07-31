@@ -5,9 +5,7 @@ class Doit < Thor
   method_option :all, :aliases => "-a", :desc => "Displays all todos"
   #TODO: pull implementation into method?
   def all
-    User.todos.each do |todo|
-      puts "puts "id: #{todo.id} | path: #{todo.file_path} | comment: #{todo.comment}""
-    end
+    Print.print_all
   end
 
   desc "file", "Display todo's for file"
