@@ -7,14 +7,6 @@ class User < ActiveRecord::Base
         new_todo
     end
 
-    def get_first
-        self.todos.first
-    end
-
-    def get_last
-        self.todos.last
-    end
-
     def list_all_todos
         self.todos.each do |todo|
             puts "id: #{todo.id} | path: #{todo.file_path} | comment: #{todo.comment}"
