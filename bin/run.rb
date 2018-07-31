@@ -11,4 +11,8 @@ soldier_exist(name)
 puts `clear`
 menu_responsiblities(menu)
 
+attack
+
+
+
 # monster_menu

@@ -11,9 +11,12 @@ class Soldier < ActiveRecord::Base
     ["counter", "aim", "kiss", "sleep"]
   end
 
+
+
   def init
     self.hp = 10
     self.ability = arr_abilities.sample
+
   end
 
 

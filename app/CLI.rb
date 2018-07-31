@@ -22,12 +22,12 @@ def menu
 end
 
 def monster_menu
-  puts "You are now fighting in #{fighting_level} against #{fighting_monster}"
+  puts display_level_1
   prompt = TTY::Prompt.new
   choice = prompt.select("Make your choice carefully") do |menu|
     menu.choice 'Attack'
     menu.choice 'Use Weapon'
-    menu.choice 'Monster HP'
+    menu.choice 'Check HP'
     menu.choice 'Use Ability'
   end
   choice
@@ -44,9 +44,31 @@ def menu_responsiblities(choice)
   end
 end
 
+## LEVEL LOGIC  1 ##
+def display_level_1
+
+  puts "You are now fighting in #{fighting_level} against #{fighting_monster}"
+
+end
+
+def attack
+   attack = if monster_menu == "Attack"
+    Battlefield.all.first.monster.hp -= 1
+  end
+  puts "attack successfull current hp is now #{attack}"
+end
+
+def check_hp
+  if monster_menu == "Check HP"
+    puts  Battlefield.all.first.monster.hp
+  end
+end
+
 def fighting_level
   "#{Battlefield.all.first.name}"
 end
+
+
 
 def fighting_monster
   "#{Battlefield.all.first.monster.name}"
