@@ -1,6 +1,11 @@
 class User < ActiveRecord::Base
     has_many :todos
     has_many :projects, through: :todo
+    @@LOGGED_IN_USER = ENV.fetch('USER')
+
+    def self.logged_in_user
+        User.find_or_create_by(name: @@LOGGED_IN_USER)
+    end
 
     def build_todo(file_path, comment, category)
         new_todo =  self.todos.build(file_path: file_path, comment: comment)

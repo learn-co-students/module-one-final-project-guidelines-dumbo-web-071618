@@ -1,0 +1,11 @@
+User.create(name: "Gabriel Batista")
+User.create(name: "Bryan None")
+User.create(name: "Prince McPrince")
+User.create(name: "Eric Ericson")
+User.create(name: "Tony Baloney")
+
+Category.create(name: "Refactor")
+Category.create(name: "Review")
+Category.create(name: "Remove")
+Category.create(name: "Add")
+Category.create(name: "Extract")

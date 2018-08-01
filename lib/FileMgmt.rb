@@ -35,12 +35,15 @@ class FileMgmt
 
     def self.scan(file_path)
         todo_hash = {}
-        File.foreach(file_path).with_index do |line, line_num|
-            if line.include?("#{self.extensions[File.extname(file_path)]}TODO:")
-                text = "#{line}"
-                text.gsub!(/#TODO:/, '')
-                text.strip!
-                todo_hash[line_num] =  text
+        #go back and create .ignore file
+        if File.extname(file_path) != ".db"
+            File.foreach(file_path.path).with_index do |line, line_num|
+                if line.include?("#{self.extensions[File.extname(file_path)]}TODO:")
+                    text = "#{line}"
+                    text.gsub!(/#{self.extensions[File.extname(file_path)]}TODO:/, '')
+                    text.strip!
+                    todo_hash[line_num] =  text
+                end
             end
         end
         todo_hash
@@ -53,8 +56,8 @@ class FileMgmt
             if !tmp_holder.empty?
                 all_todos_hash[file_path.path] = tmp_holder
             end
+            self.replace_old_todos(all_todos_hash, file_path)
         end
-        self.persist_scans(all_todos_hash)
     end
 
     def self.open_at_line(line_num, file_path)
@@ -82,5 +85,10 @@ class FileMgmt
             end
         end
         scans
+    end
+
+    def self.replace_old_todos(all_todos_hash, file_path)
+        User.logged_in_user.todos.delete_by(file_path: file_path)
+        self.persist_scans(all_todos_hash)
     end
 end
