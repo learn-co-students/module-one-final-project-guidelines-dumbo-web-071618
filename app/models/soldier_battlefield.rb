@@ -1,23 +1,18 @@
 class SoldierBattlefield < ActiveRecord::Base
   belongs_to :soldier
   belongs_to :battlefield
+  has_one :monster, through: :battlefield
 
-
-
-
-   def soldier_exist(user_input)
-    if soldier_found = Soldier.find_by_name(user_input)
-
-      puts "Welcome back #{soldier_found.name} your current hp is #{soldier_found.hp} and your current ability is #{soldier_found.ability}."
-      puts "You last fought at #{soldier_found.battlefields.last.name}"
-    else
-      new_soldier = Soldier.create(name: user_input)
-      saved_soldier = SoldierBattlefield.create(soldier_id: new_soldier.id, battlefield_id: 1)
-      puts "Welcome #{user_input} your hp is #{new_soldier.hp} and your special ability is #{new_soldier.ability}"
-    end
+  # this methods sets up battle
+  def self.initialize_battle(soldier_data, monster_data)
+    game = SoldierBattlefield.new
+    game.monster = monster_data
+    game.soldier = soldier_data
+    game.save
+    game
   end
 
-  def monster_menu
+  def menu
     prompt = TTY::Prompt.new
     choice = prompt.select("Choose your destiny?") do |menu|
       menu.choice 'Choose your Battlefield'
@@ -26,53 +21,47 @@ class SoldierBattlefield < ActiveRecord::Base
     end
     choice
   end
-
-
-def level_select
-  if monster_menu == 'Choose your Battlefield'
-  puts  Battfield.all.name
-end
-end
-
-
-
-
-
+  # ************ game loop ********** #
   def game_loop
-    while true
+    while (!monster_dead? && !soldier_dead?)
+      player_choice = monster_menu
+
+      if player_choice == 'Run Away!'
+        puts 'Coward! A soldier never turns his back!'
+        return
+      elsif player_choice == 'Check HP'
+        puts "Your HP: #{soldier.hp}"
+        next
+      end
       player_turn
       monster_turn
     end
   end
 
-  # def player_turn
-  #   "Player, what action will you choose?"
-  #   # input
-  #   self.solder.attack(self.monster)
-  # end
-  #
-  # def monster_turn
-  #   "Monster is attacking you!"
-  #   self.monster.attack(self.soldier)
-  #   " another message..."
-  # end
-
-  def monster_turn
-    monster_attack_arr = [1, 2]
-    monster_sample = monster_attack_arr.sample
-    if monster_sample == 1
-      puts "#{SoldierBattlefield.all..battlefield.monster.name}
-      attacks! You lose #{SoldierBattlefield.all.fourth.soldier.hp} HP!"
-    elsif monster_sample == 2
-      puts "Missed!"
+  # this is the menu that user will interact with
+  def monster_menu
+    prompt = TTY::Prompt.new
+    choice = prompt.select("Make your choice carefully") do |menu|
+      menu.choice 'Attack'
+      menu.choice 'Use Weapon'
+      menu.choice 'Check HP'
+      menu.choice 'Use Ability'
+      menu.choice 'Run Away!'
     end
+    choice
   end
 
   def player_turn
-     attack = if monster_menu == "Attack"
-      Battlefield.all.first.monster.hp -= 1
-    end
-    puts "attack successfull current hp is now #{attack}"
+    puts "Player, what action will you choose?"
+    # input
+    soldier.attack(monster)
+    puts "Monster HP: #{monster.hp}"
+  end
+
+  def monster_turn
+    puts "Monster is attacking you!"
+    self.monster.attack(self.soldier)
+    puts " another message..."
   end
 
   def find_monster
@@ -82,8 +71,12 @@ end
     monster_found
   end
 
-  def game_begin
+  def monster_dead?
+    monster.hp <= 0
+  end
 
+  def soldier_dead?
+    soldier.hp <= 0
   end
 
 end

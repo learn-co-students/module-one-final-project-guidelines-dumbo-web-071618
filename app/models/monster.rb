@@ -13,4 +13,8 @@ class Monster < ActiveRecord::Base
   #   end
   # end
 
+  def attack(soldier)
+    soldier.hp -= ([1, 2].sample)
+  end
+
 end

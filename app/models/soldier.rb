@@ -1,7 +1,4 @@
 class Soldier < ActiveRecord::Base
-
-
-
   has_many :soldier_battlefields
   has_many :battlefields, through: :soldier_battlefields
 
@@ -11,13 +8,25 @@ class Soldier < ActiveRecord::Base
     ["counter", "aim", "kiss", "sleep"]
   end
 
-
-
   def init
     self.hp = 10
     self.ability = arr_abilities.sample
     self.level = 1
+  end
 
+  def attack(monster)
+    monster.hp -= ([1, 2].sample)
+  end
+
+  def self.setup_user(soldier_name)
+    if soldier = Soldier.find_by_name(soldier_name)
+      puts "Welcome back #{soldier.name} your current hp is #{soldier.hp} and your current ability is #{soldier.ability}."
+      puts "You last fought at #{soldier.battlefields.last.name}." unless soldier.battlefields.empty?
+    else
+      soldier = Soldier.create(name: soldier_name)
+      puts "Welcome #{soldier.name} your hp is #{soldier.hp} and your special ability is #{soldier.ability}."
+    end
+    soldier
   end
 
   # def soldier_attack
