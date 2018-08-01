@@ -2,17 +2,19 @@ require 'catpix'
 
 def soldier_exist(name)
   if soldier_found = Soldier.find_by_name(name)
-
-    puts "Welcome back #{name} your current hp is #{soldier_found.hp} and your current ability is #{soldier_found.ability}. You last fought at #{soldier_found.battlefields.last.name}"
+# binding.prys
+    puts "Welcome back #{soldier_found.name} your current hp is #{soldier_found.hp} and your current ability is #{soldier_found.ability}."
+    puts "You last fought at #{soldier_found.battlefields.last.name}" if soldier_found.battlefields.length > 0
   else
     new_soldier = Soldier.create(name: name)
     saved_soldier = SoldierBattlefield.create(soldier_id: new_soldier.id, battlefield_id: 1)
     puts "Welcome #{name} your hp is #{new_soldier.hp} and your special ability is #{new_soldier.ability}"
   end
-
-
 end
 
+# def new_soldier(name)
+#   Soldier.create(name: name)
+# end
 
 def menu
   prompt = TTY::Prompt.new
@@ -54,12 +56,6 @@ def display_level_1
 
 end
 
-def attack
-   attack = if monster_menu == "Attack"
-    Battlefield.all.first.monster.hp -= 1
-  end
-  puts "attack successfull current hp is now #{attack}"
-end
 
 def check_hp
   if monster_menu == "Check HP"
