@@ -102,12 +102,9 @@ class User < ActiveRecord::Base
       input = gets.chomp.to_i
       case input
         when 1
-        remove_bar  
+        remove_bar
       end
     end
   end
-
-
-
-
+#this last end is for the class
 end
