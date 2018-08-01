@@ -10,18 +10,28 @@ def welcome
   puts "Hello, we're here to be your ear."
 end
 
-def help
-  puts "If you don't want to feel anymore, just type 'exit'"
+def been_here
+  prompt = TTY::Prompt.new
+  input = prompt.select("Hi friend, have you been here before?", %w(Yes No))
 end
 
 def ask_for_name
-  puts "Hi friend, what's your name?"
+    puts "Hi friend, what's your name?"
     name = gets.chomp
     system "clear"
     puts "Hi #{name}!"
     sleep(1)
     return name
-  end
+end
+
+def ask_for_name_again
+    puts "Welcome back! Remind me of your name again? (please use the same name you typed before)"
+    name = gets.chomp
+    system "clear"
+    puts "Hi #{name}!"
+    sleep(1)
+    return name
+end
 
 def ask_for_feeling
     prompt = TTY::Prompt.new
