@@ -1,7 +1,7 @@
 require_relative "../config/environment.rb"
 
 class FileMgmt
-    @@EDITOR = "atom"
+    @@EDITOR = "code"
     @@EXTENSIONS = {".rb": "#", ".html": "<!-", ".java": "//", ".js": "//", ".cpp": "//", ".h": "//", ".css": "//"}
 
     def self.editor
@@ -33,6 +33,10 @@ class FileMgmt
         end
     end
 
+    def get_priority(comment)
+
+    end
+
     #TODO: make sure scan only grabs commented todos and not todos in code.
     def self.scan(file_path)
         todo_hash = {}
@@ -62,11 +66,12 @@ class FileMgmt
         all_todos_hash
     end
 
+    
     def self.open_at_line(line_num, file_path)
         if self.editor == 'code'
-            exec("$EDITOR --goto #{file_path}:#{line_num}")
+            exec("#{self.editor} --goto #{file_path}:#{line_num}")
         elsif self.editor == 'atom' || self.editor == 'subl'
-            exec("$EDITOR #{file_path}:#{line_num}")
+            exec("#{self.editor} #{file_path}:#{line_num}")
         end
     end
 
@@ -91,8 +96,10 @@ class FileMgmt
 
     def self.replace_old_todos(all_todos_hash)
         all_todos_hash.each do |file_path, comments|
-            User.logged_in_user.todos.delete(file_path: file_path)
+            todo_ids = User.logged_in_user.todos.map {|todo| todo.id}
+            Todo.destroy(todo_ids)
         end
+        binding.pry
         self.persist_scans(all_todos_hash)
     end
 end
