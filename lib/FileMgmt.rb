@@ -26,13 +26,6 @@ class FileMgmt
         files_array.flatten
     end
 
-    #TODO: Do we need this?
-    def self.print_file_name
-        self.get_all_files_in_dir.each do |file|
-            puts file.path
-        end
-    end
-
     def get_priority(comment)
 
     end
