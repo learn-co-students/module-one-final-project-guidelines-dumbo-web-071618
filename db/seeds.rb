@@ -9,12 +9,12 @@ angry_resource5 = Resource.create(feeling: "angry/frustrated", resource: "Have y
 angry_resource6 = Resource.create(feeling: "angry/frustrated", resource: "NYC Well is your connection to free, confidential mental health support. Text WELL to 65173. Call 1-888-NYC-WELL. 24/7 support.")
 
 #bored/unmotivated/lazy
-bored_resource1 = Resource.create(feeling: "bored/unmotivated/lazy", resource: "Rub a small amount of peppermint oil on your temples to wake up!")
-bored_resource2 = Resource.create(feeling: "bored/unmotivated/lazy", resource: "Try these energizing workouts. Jumping Jacks - 30 seconds. Plank - 30 seconds. Bicycle Crunches - 30 seconds.")
-bored_resource3 = Resource.create(feeling: "bored/unmotivated/lazy", resource: "Wanna feel like a boss? I’ve got the book for you. “You Are a Badass: How to Stop Doubting Your Greatness and Start Living an Awesome Life” by Jen Sincero.")
-bored_resource4 = Resource.create(feeling: "bored/unmotivated/lazy", resource: "Did you know the 3 most common languages in the world are Mandarin, Chinese, Spanish, and English? Learn a new language with Duolingo!")
-bored_resource5 = Resource.create(feeling: "bored/unmotivated/lazy", resource: "Would you rather have unlimited sushi for life or unlimited tacos for life?")
-bored_resource6 = Resource.create(feeling: "bored/unmotivated/lazy", resource: "NYC Well is your connection to free, confidential mental health support. Text WELL to 65173. Call 1-888-NYC-WELL. 24/7 support.")
+bored_resource1 = Resource.create(feeling: "bored/unmotivated/tired/lazy", resource: "Rub a small amount of peppermint oil on your temples to wake up!")
+bored_resource2 = Resource.create(feeling: "bored/unmotivated/tired/lazy", resource: "Try these energizing workouts. Jumping Jacks - 30 seconds. Plank - 30 seconds. Bicycle Crunches - 30 seconds.")
+bored_resource3 = Resource.create(feeling: "bored/unmotivated/tired/lazy", resource: "Wanna feel like a boss? I’ve got the book for you. “You Are a Badass: How to Stop Doubting Your Greatness and Start Living an Awesome Life” by Jen Sincero.")
+bored_resource4 = Resource.create(feeling: "bored/unmotivated/tired/lazy", resource: "Did you know the 3 most common languages in the world are Mandarin, Chinese, Spanish, and English? Learn a new language with Duolingo!")
+bored_resource5 = Resource.create(feeling: "bored/unmotivated/tired/lazy", resource: "Would you rather have unlimited sushi for life or unlimited tacos for life?")
+bored_resource6 = Resource.create(feeling: "bored/unmotivated/tired/lazy", resource: "NYC Well is your connection to free, confidential mental health support. Text WELL to 65173. Call 1-888-NYC-WELL. 24/7 support.")
 
 #hungry/thirsty
 hungry1 = Resource.create(feeling: "hungry/thirsty", resource: "Next time you go out for a drink, impress your friends and put your bartender to the test by ordering the delicious apple infused Whirling Tiger.")
