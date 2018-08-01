@@ -30,12 +30,6 @@ class FileMgmt
 
     end
 
-    def self.make_file(file_path)
-        if !ProjectFile.find_by(file_path: file_path)
-            ProjectFile.create(file_path: file_path, sha: Digest::SHA1.file(file_path))
-        end
-    end
-
     #TODO: make sure scan only grabs commented todos and not todos in code.
     #TODO: go back and create .ignore file
     def self.scan(file_path)
