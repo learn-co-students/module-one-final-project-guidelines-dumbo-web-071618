@@ -15,6 +15,7 @@ def run(feelings, options)
   if input == "Yes" #asking if they've been here before
     name = ask_for_name_again
     Friend.friend_exists(name)
+    play_again_loop(feelings,options, name)
   elsif input == "No" #asking if they've been here before
     name = ask_for_name
     input = ""
@@ -42,7 +43,7 @@ def run(feelings, options)
             elsif input == "Exit the program"
               goodbye
             elsif input == "Feel again"
-              feel_again_loop(feelings,feeling,name,resource_string,options)  
+              feel_again_loop(feelings,feeling,name,resource_string,options)
             end
     elsif input == "No" #asking if they want to feel
         goodbye
