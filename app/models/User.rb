@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
     has_many :todos
-    has_many :projects, through: :todo
+    has_many :project_files, through: :todos
     @@LOGGED_IN_USER = ENV.fetch('USER')
 
     def self.logged_in_user

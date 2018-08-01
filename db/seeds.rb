@@ -1,7 +1,7 @@
 Todo.destroy_all
 User.destroy_all
 Category.destroy_all
-File.destroy_all
+ProjectFile.destroy_all
 
 gabe = User.create(name: "Gabriel Batista")
 bryan = User.create(name: "Bryan None")

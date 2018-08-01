@@ -30,12 +30,22 @@ class FileMgmt
 
     end
 
+    def self.make_file(file_path)
+        if !ProjectFile.find_by(file_path: file_path)
+            ProjectFile.create(file_path: file_path, sha: Digest::SHA1.file(file_path))
+        end
+    end
+
     #TODO: make sure scan only grabs commented todos and not todos in code.
+    #TODO: go back and create .ignore file
     def self.scan(file_path)
         todo_hash = {}
-        #go back and create .ignore file
-        if File.extname(file_path) != ".db" && self.changed?(file_path)
+        file = ProjectFile.find_or_create_by(file_path: file_path.path)
+        # binding.pry
+        if File.extname(file_path) != ".db" && self.changed?(file_path.path) || file.sha == nil
+            file.update(sha: Digest::SHA1.file(file_path).hexdigest)
             File.foreach(file_path.path).with_index do |line, line_num|
+                
                 if line.include?("#{self.extensions[File.extname(file_path)]}TODO:")
                     text = "#{line}"
                     text.gsub!(/#{self.extensions[File.extname(file_path)]}TODO:/, '')
@@ -82,7 +92,9 @@ class FileMgmt
     def self.persist_scans(scans)
         scans.each do |file_path, hash_of_todos|
             hash_of_todos.each do |line_num, comment|
-                new_todo = User.logged_in_user.todos.create(file_path: file_path , comment:comment, line_number: line_num)
+                new_todo = User.logged_in_user.todos.build(comment:comment, line_number: line_num)
+                new_todo.project_file = ProjectFile.find_by(file_path: file_path)
+                new_todo.save
             end
         end
         scans
@@ -98,6 +110,7 @@ class FileMgmt
 
     def self.changed?(file_path)
         file_sha = Digest::SHA1.file(file_path)
-        ProjectFile.find_by(file_path: file_path).sha != file_sha
+        ProjectFile.find_by(file_path: file_path).sha != file_sha.hexdigest
     end
+
 end
