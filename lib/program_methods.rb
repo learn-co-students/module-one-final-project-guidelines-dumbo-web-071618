@@ -6,13 +6,15 @@ feelings = [
   "lonely/sad/hopeless"
 ]
 
+options = ["Save this resource for a friend", "Exit the program"]
+
 def welcome
   puts "Hello, we're here to be your ear."
 end
 
 def been_here
   prompt = TTY::Prompt.new
-  input = prompt.select("Hi friend, have you been here before?", %w(Yes No))
+  input = prompt.select("Hi friend, have you been here before (or have a gift waiting for you)?", %w(Yes No))
 end
 
 def ask_for_name
@@ -25,7 +27,7 @@ def ask_for_name
 end
 
 def ask_for_name_again
-    puts "Welcome back! Remind me of your name again? (please use the same name you typed before)"
+    puts "Welcome! Remind me of your name again? (please use the same name you typed before)"
     name = gets.chomp
     system "clear"
     puts "Hi #{name}!"
@@ -45,20 +47,35 @@ def choose_feeling(feelings)
   return feeling
 end
 
-def save_option(name, resource_string)
+def do_you_want_to_save
   prompt = TTY::Prompt.new
-  input = prompt.select("Would you like to save this resource?", %w(Yes No))
-    if input == "No"
-      goodbye
-    elsif input == "Yes"
-      friend = Friend.create(name: name)
-      friend.save_resource(resource_string)
-      friend.show_resources
-    end
+  input = prompt.select("Would you like to keep this in your resources? If not, in the next step you'll have the option to save it for a friend.", %w(Yes No))
 end
 
-def invalid_input
-  puts "Oops! Please type something valid."
+def save_option(name, resource_string)
+    friend = Friend.create(name: name)
+    friend.save_resource(resource_string)
+    friend.show_resources
+    puts "Your resource has been saved!"
+end
+
+def more_options(options)
+  prompt = TTY::Prompt.new
+  input = prompt.select("What would you like to do next?", options)
+end
+
+def ask_for_friend_name
+  puts "That's so sweet! Who do you want to save it for (please type their first name)?"
+  name = gets.chomp
+  system "clear"
+  return name
+end
+
+def save_for_friend(friend_name, resource_string)
+  friend = Friend.create(name: friend_name)
+  friend.save_resource(resource_string)
+  friend.show_resources
+  puts "Your gift for #{friend_name} is waiting!"
 end
 
 def goodbye

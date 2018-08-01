@@ -12,16 +12,10 @@ class Friend <ActiveRecord::Base
 
   def self.friend_exists(name)
     if friend = Friend.find_by(name: name)
+      puts "#{name}, these are your resources!"
       friend.show_resources
     else
       puts "Sorry, we couldn't find you!"
     end
   end
-
-  # def existing_friend_resources(name)
-  #   if friend_exists(name) == true
-  #     self.resources
-  #   end
-  # end
-
 end
