@@ -1,7 +1,7 @@
 require_relative "../config/environment.rb"
 
 class FileMgmt
-    @@EDITOR = "code"
+    @@EDITOR = "atom"
     @@EXTENSIONS = {".rb": "#", ".html": "<!-", ".java": "//", ".js": "//", ".cpp": "//", ".h": "//", ".css": "//"}
 
     def self.editor
@@ -39,7 +39,7 @@ class FileMgmt
         if File.extname(file_path) != ".db" && self.changed?(file_path.path) || file.sha == nil
             file.update(sha: Digest::SHA1.file(file_path).hexdigest)
             File.foreach(file_path.path).with_index do |line, line_num|
-                
+
                 if line.include?("#{self.extensions[File.extname(file_path)]}TODO:")
                     text = "#{line}"
                     text.gsub!(/#{self.extensions[File.extname(file_path)]}TODO:/, '')
@@ -51,7 +51,7 @@ class FileMgmt
         todo_hash
         # binding.pry
     end
-    
+
     def self.scan_all(file_paths)
         all_todos_hash = {}
         file_paths.each do |file_path|
@@ -64,7 +64,7 @@ class FileMgmt
         all_todos_hash
     end
 
-    
+
     def self.open_at_line(line_num, file_path)
         if self.editor == 'code'
             exec("#{self.editor} --goto #{file_path}:#{line_num}")
