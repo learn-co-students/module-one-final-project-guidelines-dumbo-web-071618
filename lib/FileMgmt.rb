@@ -2,7 +2,7 @@ require_relative "../config/environment.rb"
 
 class FileMgmt
     @@EDITOR = "code"
-    @@EXTENSIONS = {".rb": "#", ".html": "<!-", ".java": "//", ".js": "//", ".cpp": "//", ".h": "//", ".css": "//"}
+    @@EXTENSIONS = {".rb" => "#", ".html" => "<!-", ".java" => "//", ".js" => "//", ".cpp" => "//", ".h" => "//", ".css" => "//"}
 
     def self.editor
         @@EDITOR
@@ -30,8 +30,8 @@ class FileMgmt
 
     end
 
-    #TODO: make sure scan only grabs commented todos and not todos in code.
-    #TODO: go back and create .ignore file
+    #TODO:10: make sure scan only grabs commented todos and not todos in code.
+    #TODO:-11: go back and create .ignore file
     def self.scan(file_path)
         todo_hash = {}
         file = ProjectFile.find_or_create_by(file_path: file_path.path)
@@ -41,6 +41,7 @@ class FileMgmt
             File.foreach(file_path.path).with_index do |line, line_num|
                 
                 if line.include?("#{self.extensions[File.extname(file_path)]}TODO:")
+                    # binding.pry
                     text = "#{line}"
                     text.gsub!(/#{self.extensions[File.extname(file_path)]}TODO:/, '')
                     text.strip!
@@ -49,7 +50,6 @@ class FileMgmt
             end
         end
         todo_hash
-        # binding.pry
     end
     
     def self.scan_all(file_paths)
@@ -83,12 +83,31 @@ class FileMgmt
         end
     end
 
+    def self.priority_bounds(priority_comment_split_size)
+        if priority_comment_split_size > 5
+            return 5
+        elsif priority_comment_split_size < 1
+            return 1
+        end
+        priority_comment_split_size
+    end
+
     def self.persist_scans(scans)
         scans.each do |file_path, hash_of_todos|
             hash_of_todos.each do |line_num, comment|
-                new_todo = User.logged_in_user.todos.build(comment:comment, line_number: line_num)
-                new_todo.project_file = ProjectFile.find_by(file_path: file_path)
-                new_todo.save
+                priority_comment_split = comment.split(':')
+                # binding.pry
+                if priority_comment_split.size == 1
+                    new_todo = User.logged_in_user.todos.build(comment: comment, line_number: line_num, priority: 0)
+                elsif priority_comment_split.size == 2
+                    # binding.pry
+                    priority_comment_split[0] = self.priority_bounds(priority_comment_split[0].to_i)
+                    new_todo = User.logged_in_user.todos.build(comment:priority_comment_split[1], line_number: line_num, priority:priority_comment_split[0])
+                end
+                if new_todo != nil
+                    new_todo.project_file = ProjectFile.find_by(file_path: file_path)
+                    new_todo.save
+                end
             end
         end
         scans

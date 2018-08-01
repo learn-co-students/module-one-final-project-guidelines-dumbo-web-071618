@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
       end
     end
 
-    #TODO: refactor this
+    #TODO:3: refactor this
     def select_specific_todos
     array = self.list_all_todos
     array_of_file_path = array.map{|todo| todo.file_path }.uniq
