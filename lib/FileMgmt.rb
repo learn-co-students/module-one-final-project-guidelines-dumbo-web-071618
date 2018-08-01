@@ -41,7 +41,7 @@ class FileMgmt
     def self.scan(file_path)
         todo_hash = {}
         #go back and create .ignore file
-        if File.extname(file_path) != ".db"
+        if File.extname(file_path) != ".db" && self.changed?(file_path)
             File.foreach(file_path.path).with_index do |line, line_num|
                 if line.include?("#{self.extensions[File.extname(file_path)]}TODO:")
                     text = "#{line}"
@@ -52,7 +52,7 @@ class FileMgmt
             end
         end
         todo_hash
-        binding.pry
+        # binding.pry
     end
     
     def self.scan_all(file_paths)
@@ -101,5 +101,10 @@ class FileMgmt
             Todo.destroy(todo_ids)
         end
         self.persist_scans(all_todos_hash)
+    end
+
+    def self.changed?(file_path)
+        file_sha = Digest::SHA1.file(file_path)
+        ProjectFile.find_by(file_path: file_path).sha != file_sha
     end
 end
