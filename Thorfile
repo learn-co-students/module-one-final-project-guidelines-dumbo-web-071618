@@ -39,11 +39,7 @@ class TDL < Thor
   desc "editor", "choose your default editor"
   method_option :scan, :aliases => "-e", :desc => <<-LONGDESC
     Sets the default editor for opening todos.
-    doit -e <option>
-
-    doit -e 1  #if Visual Studio Code
-    doit -e 2  #if Atom
-    doit -e 3  #if Sublime
+    doit -e
   LONGDESC
 
   def editor
