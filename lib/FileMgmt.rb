@@ -47,11 +47,12 @@ class FileMgmt
                     text = "#{line}"
                     text.gsub!(/#{self.extensions[File.extname(file_path)]}TODO:/, '')
                     text.strip!
-                    todo_hash[line_num] =  text
+                    todo_hash[line_num+1] =  text
                 end
             end
         end
         todo_hash
+        binding.pry
     end
     
     def self.scan_all(file_paths)
@@ -99,7 +100,6 @@ class FileMgmt
             todo_ids = User.logged_in_user.todos.map {|todo| todo.id}
             Todo.destroy(todo_ids)
         end
-        binding.pry
         self.persist_scans(all_todos_hash)
     end
 end

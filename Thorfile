@@ -8,18 +8,6 @@ class TDL < Thor
     Print.print_all
   end
 
-  desc "file", "Display todo's for file"
-  method_option :scan, :aliases => "-f", :desc => "Display todo's for a file based on the file path passed in"
-  def file(file_path)
-    Todo.find_by(file_path: file_path)
-  end
-
-  desc "login", "Login user"
-  method_option :scan, :aliases => "-l", :desc => "If user exists, sets that user as the current logged in user."
-  def login(username)
-    
-  end
-
   desc "scan", "Scan all files"
   method_option :scan, :aliases => "-s", :desc => "Scan all script files in present working directory"
   def scan
@@ -31,10 +19,6 @@ class TDL < Thor
   def user
     User.logged_in_user.select_specific_todos
   end
-
-
-
-
 
   desc "editor", "choose your default editor"
   method_option :scan, :aliases => "-e", :desc => <<-LONGDESC
@@ -51,6 +35,4 @@ class TDL < Thor
     end
     FileMgmt.set_editor(result)
   end
-
-
 end
