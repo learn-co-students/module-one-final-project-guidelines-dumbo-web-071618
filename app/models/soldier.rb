@@ -16,6 +16,7 @@ class Soldier < ActiveRecord::Base
   def init
     self.hp = 10
     self.ability = arr_abilities.sample
+    self.level = 1
 
   end
 

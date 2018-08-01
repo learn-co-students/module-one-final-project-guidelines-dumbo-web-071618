@@ -4,7 +4,8 @@ class CreateSoldiers < ActiveRecord::Migration[5.0]
       t.string :name
       t.integer :hp
       t.string :ability
-      
+      t.integer :level 
+
     end
   end
 
