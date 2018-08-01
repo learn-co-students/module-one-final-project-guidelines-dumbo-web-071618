@@ -1,5 +1,5 @@
-class SoliderBattlefield < ActiveRecord::Base
-  belongs_to :soldiers
-  belongs_to :battlefields
-  
+class SoldierBattlefield < ActiveRecord::Base
+  belongs_to :soldier
+  belongs_to :battlefield
+
 end

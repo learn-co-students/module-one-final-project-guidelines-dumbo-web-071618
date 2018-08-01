@@ -6,6 +6,7 @@ def soldier_exist(name)
     puts "Welcome back #{name} your current hp is #{soldier_found.hp} and your current ability is #{soldier_found.ability}"
   else
     soldier_1 = Soldier.create(name: name)
+    saved_soldier = SoldierBattlefield.create(soldier_id: soldier_1.id)
     puts "Welcome #{name} your hp is #{soldier_1.hp} and your special ability is #{soldier_1.ability}"
   end
 end
@@ -72,6 +73,10 @@ end
 
 def fighting_monster
   "#{Battlefield.all.first.monster.name}"
+end
+
+def monster
+  Soldier.battlefield_id.monster
 end
 
 # def monster_menu

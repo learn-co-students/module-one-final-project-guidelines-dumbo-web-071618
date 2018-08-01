@@ -8,7 +8,7 @@ name = gets.chomp
 
 soldier_exist(name)
 
-puts `clear`
+# puts `clear`
 menu_responsiblities(menu)
 
 attack
