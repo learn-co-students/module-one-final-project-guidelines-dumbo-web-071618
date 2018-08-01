@@ -33,6 +33,7 @@ class FileMgmt
         end
     end
 
+    #TODO: make sure scan only grabs commented todos and not todos in code.
     def self.scan(file_path)
         todo_hash = {}
         #go back and create .ignore file
@@ -56,8 +57,9 @@ class FileMgmt
             if !tmp_holder.empty?
                 all_todos_hash[file_path.path] = tmp_holder
             end
-            self.replace_old_todos(all_todos_hash, file_path)
         end
+        self.replace_old_todos(all_todos_hash)
+        all_todos_hash
     end
 
     def self.open_at_line(line_num, file_path)
@@ -79,16 +81,18 @@ class FileMgmt
     end
 
     def self.persist_scans(scans)
-        scans.each do |file_path|
-            file_path.each do |line_num, comment|
-                Todo.create(file_path: file_path , comment:comment, line_number: line_num)
+        scans.each do |file_path, hash_of_todos|
+            hash_of_todos.each do |line_num, comment|
+                new_todo = User.logged_in_user.todos.create(file_path: file_path , comment:comment, line_number: line_num)
             end
         end
         scans
     end
 
-    def self.replace_old_todos(all_todos_hash, file_path)
-        User.logged_in_user.todos.delete_by(file_path: file_path)
+    def self.replace_old_todos(all_todos_hash)
+        all_todos_hash.each do |file_path, comments|
+            User.logged_in_user.todos.delete(file_path: file_path)
+        end
         self.persist_scans(all_todos_hash)
     end
 end
