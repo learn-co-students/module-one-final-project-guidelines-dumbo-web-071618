@@ -1,10 +1,10 @@
 require_relative '../config/environment'
-require_relative '../config/run_helper'
 
-welcome_to_music_box
+display_title
 
-sleep(5)
+sleep(3)
 
 system "clear"
 
-are_you_new_user?
+# puts Song.all.map(&:name)
+prompt_user_status
