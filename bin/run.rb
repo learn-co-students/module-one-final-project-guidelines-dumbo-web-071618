@@ -4,17 +4,8 @@ require_relative '../config/environment'
 
 puts "Welcome Soldier, what is your name?"
 
-current_battlefield = SoldierBattlefield.new
-current_battlefield.soldier = Player.find_or_create_by(user_input)
-current_battlefield.monster = Battlefield.find_by(name: 'Mars').monster
+user_name = gets.chomp
 
-current_battlefield.start_game
+solder_battlefield_instance = SoldierBattlefield.new
 
-name = gets.chomp
-
-soldier_exist(name)
-
-# puts `clear`
-menu_responsiblities(menu)
-
-# monster_menu
+solder_battlefield_instance.soldier_exist(user_name)

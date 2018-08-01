@@ -1,7 +1,27 @@
 class SoldierBattlefield < ActiveRecord::Base
   belongs_to :soldier
   belongs_to :battlefield
-  belongs_to :monster, through: :battlefield
+
+
+
+
+   def soldier_exist(user_input)
+    if soldier_found = Soldier.find_by_name(user_input)
+
+      puts "Welcome back #{soldier_found.name} your current hp is #{soldier_found.hp} and your current ability is #{soldier_found.ability}."
+      puts "You last fought at #{soldier_found.battlefields.last.name}"
+    else
+      new_soldier = Soldier.create(name: name)
+      saved_soldier = SoldierBattlefield.create(soldier_id: new_soldier.id, battlefield_id: 1)
+      puts "Welcome #{name} your hp is #{new_soldier.hp} and your special ability is #{new_soldier.ability}"
+    end
+  end
+
+
+
+
+
+
 
   def game_loop
     while true
@@ -9,7 +29,7 @@ class SoldierBattlefield < ActiveRecord::Base
       monster_turn
     end
 
-    advance_stage
+
   end
 
   def player_turn

@@ -20,12 +20,12 @@ class Soldier < ActiveRecord::Base
 
   end
 
-  def soldier_attack
-     attack = if monster_menu == "Attack"
-      Battlefield.all.first.monster.hp -= 1
-    end
-    puts "attack successfull current hp is now #{attack}"
-  end
+  # def soldier_attack
+  #    attack = if monster_menu == "Attack"
+  #     Battlefield.all.first.monster.hp -= 1
+  #   end
+  #   puts "attack successfull current hp is now #{attack}"
+  # end
 
   # def win
   #   # based on monster hp i will attack first
