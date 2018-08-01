@@ -1,8 +1,8 @@
 
 class User < ActiveRecord::Base
 
-  has_many :favbars
-  has_many :bars, through: :favbars
+  has_many :favorite_bars
+  has_many :bars, through: :favorite_bar
 
   #User
   def self.create_user_or_login
