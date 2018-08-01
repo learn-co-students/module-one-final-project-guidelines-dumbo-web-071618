@@ -6,7 +6,7 @@ feelings = [
   "lonely/sad/hopeless"
 ]
 
-options = ["Save this resource for a friend", "Exit the program"]
+options = ["Save this resource for a friend", "Exit the program", "Feel again"]
 
 def welcome
   puts "Hello, we're here to be your ear."
@@ -53,7 +53,7 @@ def do_you_want_to_save
 end
 
 def save_option(name, resource_string)
-    friend = Friend.create(name: name)
+    friend = Friend.find_or_create_by(name: name)
     friend.save_resource(resource_string)
     friend.show_resources
     puts "Your resource has been saved!"
@@ -72,7 +72,7 @@ def ask_for_friend_name
 end
 
 def save_for_friend(friend_name, resource_string)
-  friend = Friend.create(name: friend_name)
+  friend = Friend.find_or_create_by(name: friend_name)
   friend.save_resource(resource_string)
   friend.show_resources
   puts "Your gift for #{friend_name} is waiting!"

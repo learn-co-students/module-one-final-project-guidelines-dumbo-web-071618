@@ -7,7 +7,7 @@ feelings = [
   "anxious/nervous/confused",
   "lonely/sad/hopeless"
 ]
-options = ["Save this resource for a friend", "Exit the program"]
+options = ["Save this resource for a friend", "Exit the program", "Feel again"]
 
 def run(feelings, options)
   welcome
@@ -29,6 +29,8 @@ def run(feelings, options)
             if input == "Save this resource for a friend"
               friend_name = ask_for_friend_name
               save_for_friend(friend_name, resource_string)
+            elsif input == "Feel again"
+              feel_again_loop(feelings,feeling,name,resource_string,options)
             elsif input == "Exit the program"
               goodbye
             end
@@ -39,6 +41,8 @@ def run(feelings, options)
               save_for_friend(friend_name, resource_string)
             elsif input == "Exit the program"
               goodbye
+            elsif input == "Feel again"
+              feel_again_loop(feelings,feeling,name,resource_string,options)  
             end
     elsif input == "No" #asking if they want to feel
         goodbye
