@@ -7,13 +7,13 @@ class Friend <ActiveRecord::Base
   end
 
   def show_resources
-    puts self.resources.map {|r| r.resource}.uniq
+    self.resources.map {|r| r.resource}.uniq
   end
 
   def self.friend_exists(name)
     if friend = Friend.find_by(name: name)
-      puts "#{name}, these are your resources!"
-      friend.show_resources
+      puts "#{name.capitalize}, these are your resources!"
+      puts friend.show_resources
     else
       puts "Sorry, we couldn't find you!"
     end

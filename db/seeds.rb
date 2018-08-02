@@ -39,13 +39,13 @@ anxious6 = Resource.create(feeling: "anxious/nervous/confused", resource: "Try t
 anxious7 = Resource.create(feeling: "anxious/nervous/confused", resource: "Imagine a light rain on the roof when you’re inside a happy home, warm, safe, and comfortable.")
 
 #lonley
-lonley1 = Resource.create(feeling: "lonley/sad/hopeless", resource: "‘If only it were possible for us to see farther than our knowledge reaches, and even a little beyond the outworks of our presentiment, perhaps we would bear our sadnesses with greater trust than we have in our joys.’ -Rainer Maria Rilke")
-lonley2 = Resource.create(feeling: "lonley/sad/hopeless", resource: "Imagine you are being snuggled by lots of fluffy baby goats.")
-lonley3 = Resource.create(feeling: "lonley/sad/hopeless", resource: "You are not alone. Life can be very difficult, even for the luckiest and seemingly happiest people.")
-lonley4 = Resource.create(feeling: "lonley/sad/hopeless", resource: "Start observing the trends in your feelings. Do you feel sad just now, or every day? Do you feel sad more often at a particular time of day? Where in your body do you feel the sadness? Is it simply a physical feeling, or coupled with thoughts as well? Write it down")
-lonley5 = Resource.create(feeling: "lonley/sad/hopeless", resource: "‘Everybody knows the saying: 'You should never go to the grocery store when you're hungry.' But there's another saying that I don't think they tell you enough which is this: 'You should never go to the pet store when you're lonely.'-Leo Allen")
-lonley6 = Resource.create(feeling: "lonley/sad/hopeless", resource: "‘What’s brown and sticky? A stick!’ Haha! Classic.")
-lonley7 = Resource.create(feeling: "lonley/sad/hopeless", resource: "‘Just imagine becoming the way you used to be as a very young child, before you understood the meaning of any word, before opinions took over your mind. The real you is loving, joyful, and free. The real you is just like a flower, just like the wind, just like the ocean, just like the sun.’ -Don Miguel Ruiz")
+lonley1 = Resource.create(feeling: "lonely/sad/hopeless", resource: "‘If only it were possible for us to see farther than our knowledge reaches, and even a little beyond the outworks of our presentiment, perhaps we would bear our sadnesses with greater trust than we have in our joys.’ -Rainer Maria Rilke")
+lonley2 = Resource.create(feeling: "lonely/sad/hopeless", resource: "Imagine you are being snuggled by lots of fluffy baby goats.")
+lonley3 = Resource.create(feeling: "lonely/sad/hopeless", resource: "You are not alone. Life can be very difficult, even for the luckiest and seemingly happiest people.")
+lonley4 = Resource.create(feeling: "lonely/sad/hopeless", resource: "Start observing the trends in your feelings. Do you feel sad just now, or every day? Do you feel sad more often at a particular time of day? Where in your body do you feel the sadness? Is it simply a physical feeling, or coupled with thoughts as well? Write it down")
+lonley5 = Resource.create(feeling: "lonely/sad/hopeless", resource: "‘Everybody knows the saying: 'You should never go to the grocery store when you're hungry.' But there's another saying that I don't think they tell you enough which is this: 'You should never go to the pet store when you're lonely.'-Leo Allen")
+lonley6 = Resource.create(feeling: "lonely/sad/hopeless", resource: "‘What’s brown and sticky? A stick!’ Haha! Classic.")
+lonley7 = Resource.create(feeling: "lonely/sad/hopeless", resource: "‘Just imagine becoming the way you used to be as a very young child, before you understood the meaning of any word, before opinions took over your mind. The real you is loving, joyful, and free. The real you is just like a flower, just like the wind, just like the ocean, just like the sun.’ -Don Miguel Ruiz")
 
 #happy
 happy1 = Resource.create(feeling: "happy/grateful/joyful", resource: "Just take a minute to breathe and feel the happiness within you. How can you remember this feeling and call it back")

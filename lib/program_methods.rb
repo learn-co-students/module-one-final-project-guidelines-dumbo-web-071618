@@ -13,19 +13,22 @@ feelings = [
 options = ["Save this resource for a friend", "Feel again", "Exit the program"]
 
 def welcome
-  puts "Hello, we're here to be your ear."
+  puts "We're here to be your ear."
+  sleep(1)
+  system "clear"
 end
 
 def been_here
   prompt = TTY::Prompt.new
-  input = prompt.select("Hi friend, have you been here before (or have a gift waiting for you)?", %w(Yes No))
+  input = prompt.select("Hi friend, have you been here before (or do you have a gift waiting for you)?", %w(No Yes))
 end
 
 def ask_for_name
-    puts "Hi friend, what's your name?"
+    system "clear"
+    puts "Nice to meet you! What's your name?"
     name = gets.chomp.downcase
     system "clear"
-    puts "Hi #{name}!"
+    puts "Hi #{name.capitalize}!"
     sleep(1)
     return name
 end
@@ -34,7 +37,7 @@ def ask_for_name_again
     puts "Welcome! Remind me of your name again? (please use the same name you typed before)"
     name = gets.chomp.downcase
     system "clear"
-    puts "Hi #{name}!"
+    puts "Hi #{name.capitalize}!"
     sleep(1)
     return name
 end
@@ -45,9 +48,9 @@ def ask_for_feeling
 end
 
 def choose_feeling(feelings)
+  system "clear"
   prompt = TTY::Prompt.new
   feeling = prompt.select("How do you feel? Please choose a feeling.", feelings)
-  puts feeling
   return feeling
 end
 
@@ -79,7 +82,7 @@ def save_for_friend(friend_name, resource_string)
   friend = Friend.find_or_create_by(name: friend_name)
   friend.save_resource(resource_string)
   friend.show_resources
-  puts "Your gift for #{friend_name} is waiting!"
+  puts "Your gift for #{friend_name.capitalize} is waiting!"
 end
 
 def goodbye
