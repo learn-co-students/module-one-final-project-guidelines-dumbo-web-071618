@@ -4,5 +4,6 @@ class CreateBarsTable < ActiveRecord::Migration[5.0]
       t.string :name
       t.integer :rating
       t.string :location
+    end
   end
 end

@@ -1,8 +1,8 @@
 
 class User < ActiveRecord::Base
 
-  has_many :favbars
-  has_many :bars, through: :favbars
+  has_many :favorite_bars
+  has_many :bars, through: :favorite_bars
 
   #User
   def self.create_user_or_login
@@ -24,9 +24,9 @@ class User < ActiveRecord::Base
     self.find_by(name: username) || self.login
   end
 
-  def self.create_user
-    puts "Please enter a new username: "
-    username = gets.chomp.split(" ").map{|w| w.capitalize}.join(" ")
+  def self.create_user(username)
+    # puts "Please enter a new username: "
+    # username = gets.chomp.split(" ").map{|w| w.capitalize}.join(" ")
     if self.find_by(name: username)
       puts "Username already taken."
       self.create_user
@@ -60,19 +60,35 @@ class User < ActiveRecord::Base
 
   def find_bar
     puts "These are the bars in your location!"
-    YelpAdapter.seach(self.location).each do |bar|
+    YelpAdapter.search(self.location).each do |bar|
       Bar.create(name: bar["name"], rating: bar["rating"], location: bar["location"]["display_address"].join(" "))
     end
+    barlist = []
+    Bar.order(id: :desc).take(5).each do |bar|
+      barlist << "#{bar.name} -- #{bar.location}, #{bar.rating} stars."
+    end
+    puts barlist
   end
 
   def add_bar
     puts "Please enter the name of the bar you'd like to add."
     bar_name = gets.chomp.split(" ").map{|w| w.capitalize}.join(" ")
     bar = Bar.find_by(name: bar_name)
-    if bar.id == FavBar.find(bar.id)
+    if !bar
+      puts "Bar is not found. Reenter bar name."
+      add_bar
+    elsif self.bars.include?(bar) && bar
+      #bar.id == FavoriteBar.find_by(: bar.id)
       puts "The bar you are trying to add already exists in your favorites."
+      puts "Enter 1 to try again or 2 to go back to the menu."
+      input = gets.chomp.to_i
+      case input
+        when 1
+          add_bar
+      end
     else
-      FavBar.create(user_id: self.id, bar_id: bar.id)
+      # self.bars << bar
+      FavoriteBar.create(user: self, bar: bar)
       puts "You have added the bar: #{bar_name}, to your favorite bar list!"
     end
   end
@@ -81,15 +97,18 @@ class User < ActiveRecord::Base
     puts "Please enter the name of the bar you'd like to remove."
     bar_name = gets.chomp.split(" ").map{|w| w.capitalize}.join(" ")
     bar = Bar.find_by(name: bar_name)
-    if FavBar.destroy(bar)
+    if self.bars.include?(bar)
+      self.bars.destroy(bar)
       puts "You have successfully removed the bar #{bar_name} from your favorites."
     else
       puts "The bar you are trying to remove does not exist. Please try again."
-      self.remove_bar
+      puts "Enter 1 to try again or 2 to go back to the menu."
+      input = gets.chomp.to_i
+      case input
+        when 1
+        remove_bar
+      end
     end
   end
-
-
-
-
+#this last end is for the class
 end
