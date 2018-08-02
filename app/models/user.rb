@@ -30,8 +30,9 @@ class User < ActiveRecord::Base
   def self.find_existing_user
     puts "Please enter username:"
     user_name = gets.chomp
-    if current_user = User.find_by(name: user_name)
-      puts "Welcome back, #{nameFromUser}!"
+    current_user = User.find_by(User.name == user_name)
+    if User.all.map { |user| user.name }.include?(user_name)
+      puts "Welcome back, #{current_user.name}!"
     else
       puts "Username not found"
       find_existing_user

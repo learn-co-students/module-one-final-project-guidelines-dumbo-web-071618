@@ -21,6 +21,9 @@ class Playlist < ActiveRecord::Base
       current_user.playlists.each do |playlist|
         puts playlist.name
       end
+      puts "TYPE NAME OF PLAYLIST TO CHOOSE"
+      playlist = gets.chomp
+      puts "Currently in Playlist: #{playlist}"
     when "Create_Playlist"
       puts "Please enter playlist name:"
       playlist_name = gets.chomp
@@ -28,7 +31,18 @@ class Playlist < ActiveRecord::Base
       puts "Playlist #{playlist_name} created!"
       main_menu(current_user)
     when "Delete_Playlist"
-      delete_playlist_flow
+      # binding.pry
+      playlists = current_user.playlists
+      playlists.each do |playlist|
+        puts playlist.name
+      end
+      puts "TYPE NAME OF PLAYLIST YOU WANT TO DELETE"
+      playlist = gets.chomp
+      current_playlist = Playlist.find_by(name: playlist, user: current_user)
+      current_playlist.destroy
+
+      puts "Playlist #{playlist} has been deleted!"
+      main_menu(current_user)
     when "Edit_Playlist"
     when "Go_back"
       go_back_from_actions

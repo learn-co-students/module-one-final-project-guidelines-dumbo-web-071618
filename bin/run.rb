@@ -1,5 +1,7 @@
 require_relative '../config/environment'
 # Welcome user
+# binding.pry
+
 def display_title
   font = TTY::Font.new("3d")
   pastel = Pastel.new
@@ -40,7 +42,6 @@ display_title
 #prompt_user_status
 
 # choose_action
-
 
 current_user = User.setup_user # Find User
 Playlist.main_menu(current_user)# Main Menu
