@@ -4,7 +4,7 @@ def welcome
 
   puts "Halt..."
   sleep 1
-  puts "Who goes there??"
+  puts "Who goes there?? State your name soldier"
 end
 
 def main_menu
