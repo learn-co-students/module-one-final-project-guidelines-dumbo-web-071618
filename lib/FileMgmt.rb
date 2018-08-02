@@ -1,13 +1,8 @@
 require_relative "../config/environment.rb"
 
 class FileMgmt
-<<<<<<< HEAD
     @@EDITOR = "atom"
-    @@EXTENSIONS = {".rb": "#", ".html": "<!-", ".java": "//", ".js": "//", ".cpp": "//", ".h": "//", ".css": "//"}
-=======
-    @@EDITOR = "code"
     @@EXTENSIONS = {".rb" => "#", ".html" => "<!-", ".java" => "//", ".js" => "//", ".cpp" => "//", ".h" => "//", ".css" => "//"}
->>>>>>> cf20d058b72431b9b69acaa4fb69c90bbcf514d5
 
     def self.editor
         @@EDITOR
@@ -57,6 +52,8 @@ class FileMgmt
         todo_hash
     end
 
+    #TODO:3: Testing.
+
     def self.scan_all(file_paths)
         all_todos_hash = {}
         file_paths.each do |file_path|
@@ -78,6 +75,8 @@ class FileMgmt
         end
     end
 
+    #TODO:2: Testing.
+
     def self.set_editor(selection)
         if selection == 1
             @@EDITOR = 'code'
@@ -96,6 +95,8 @@ class FileMgmt
         end
         priority_comment_split_size
     end
+
+    #TODO:4: Testing.
 
     def self.persist_scans(scans)
         scans.each do |file_path, hash_of_todos|
