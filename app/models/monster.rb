@@ -17,4 +17,8 @@ class Monster < ActiveRecord::Base
     soldier.hp -= ([1, 2].sample)
   end
 
+  def dead?
+    self.hp <= 0
+  end
+
 end

@@ -24,36 +24,14 @@ class Soldier < ActiveRecord::Base
     @weapon = weapon
   end
 
-  # def game_loop
-  #   if (!monster_dead? && !soldier_dead?)
-  #     player_choice = monster_menu
-  #     system "clear"
-  #     if player_choice == 'Attack'
-  #       arr_comments = ["Die monster!", "OHHHHH Shiit hes about to explode!", "This is our only chance!"]
-  #       puts arr_comments.sample
-  #       sleep 1
-  #     elsif player_choice == 'Run Away!'
-  #       puts 'Coward! A soldier never turns his back!'
-  #       return
-  #     elsif player_choice == 'Check HP'
-  #       puts "Your HP: #{soldier.hp}"
-  #       # next
-  #     end
-  #     player_turn
-  #     monster_turn
-  #   elsif monster_dead?
-  #     puts "YOU LOST UGLY!"
-  #   elsif soldier_dead
-  #   puts "Soldier DOWN SOLDIER DOWN!!! #{monster.name} has TAKEN OVER!"
-  #     # player_turn
-  #     # monster_turn
-  #   end
-  # end
+  def dead?
+    self.hp <= 0
+  end
 
   def self.setup_user(soldier_name)
     if soldier = Soldier.find_by_name(soldier_name)
       puts "Welcome back #{soldier.name} your current hp is #{soldier.hp} and your current ability is #{soldier.ability}."
-      puts "You last fought at #{soldier.battlefields.last.name}." unless soldier.battlefields.length < 0
+      puts "You last fought at #{soldier.battlefields.last.name}!" unless soldier.battlefields.length == 0
     else
       soldier = Soldier.create(name: soldier_name)
       puts "Must be a new soldier ... Fresh Meat! You are starting from the TOP!"
@@ -96,5 +74,29 @@ class Soldier < ActiveRecord::Base
   #     if i have already fought then
   # end
 
-
+  # def game_loop
+  #   if (!monster_dead? && !soldier_dead?)
+  #     player_choice = monster_menu
+  #     system "clear"
+  #     if player_choice == 'Attack'
+  #       arr_comments = ["Die monster!", "OHHHHH Shiit hes about to explode!", "This is our only chance!"]
+  #       puts arr_comments.sample
+  #       sleep 1
+  #     elsif player_choice == 'Run Away!'
+  #       puts 'Coward! A soldier never turns his back!'
+  #       return
+  #     elsif player_choice == 'Check HP'
+  #       puts "Your HP: #{soldier.hp}"
+  #       # next
+  #     end
+  #     player_turn
+  #     monster_turn
+  #   elsif monster_dead?
+  #     puts "YOU LOST UGLY!"
+  #   elsif soldier_dead
+  #   puts "Soldier DOWN SOLDIER DOWN!!! #{monster.name} has TAKEN OVER!"
+  #     # player_turn
+  #     # monster_turn
+  #   end
+  # end
 end
