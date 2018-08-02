@@ -14,7 +14,9 @@ class Monster < ActiveRecord::Base
   # end
 
   def attack(soldier)
-    soldier.hp -= ([1, 2].sample)
+    damage = ([1, 2].sample)
+    soldier.hp -= damage
+    puts "#{name} just dealt #{damage} damage point to you!"
   end
 
   def dead?

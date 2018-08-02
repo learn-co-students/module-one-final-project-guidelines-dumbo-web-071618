@@ -17,7 +17,9 @@ class Soldier < ActiveRecord::Base
   end
 
   def attack(monster)
-    monster.hp -= (@weapon.sample)
+    damage = @weapon.sample
+    monster.hp -= damage
+    puts "You dealt #{damage} damage to #{monster.name}!"
   end
 
   def switch(weapon)

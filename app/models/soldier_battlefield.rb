@@ -72,7 +72,7 @@ class SoldierBattlefield < ActiveRecord::Base
 
   def monster_turn
     if !monster_dead?
-      puts "Monster is attacking you!"
+      puts "#{monster.name} is attacking you!"
       monster.attack(soldier)
       puts " AHHHHH!!!"
     else monster_dead?
