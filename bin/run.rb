@@ -36,6 +36,10 @@ if player_choice == 'Choose your Battlefield'
   level_1.game_loop
 elsif player_choice == 'Get new Weapons'
   puts "Bummer you got no weapons!... Yet"
+elsif player_choice == 'Who have you Slayed?'
+  soldier_data.monsters.each do |monster|
+    puts monster.name
+  end
 elsif player_choice == 'Exit'
   puts "Come back when you grow up ... CHILD"
 end

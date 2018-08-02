@@ -1,6 +1,7 @@
 class Soldier < ActiveRecord::Base
   has_many :soldier_battlefields
   has_many :battlefields, through: :soldier_battlefields
+  has_many :monsters, through: :battlefields
 
   after_initialize :init
 

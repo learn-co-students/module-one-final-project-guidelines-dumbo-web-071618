@@ -12,6 +12,7 @@ def main_menu
   choice = prompt.select("Choose your destiny?") do |menu|
     menu.choice 'Choose your Battlefield'
     menu.choice 'Get new Weapons'
+    menu.choice 'Who have you Slayed?'
     menu.choice 'Exit'
   end
   choice
