@@ -60,14 +60,12 @@ class User < ActiveRecord::Base
 
   def find_bar
     puts "These are the bars in your location!"
-    YelpAdapter.search(self.location).each do |bar|
-      Bar.create(name: bar["name"], rating: bar["rating"], location: bar["location"]["display_address"].join(" "))
-    end
     barlist = []
     Bar.order(id: :desc).take(5).each do |bar|
       barlist << "#{bar.name} -- #{bar.location}, #{bar.rating} stars."
     end
     puts barlist
+    options(self)
   end
 
   def add_bar
@@ -91,6 +89,7 @@ class User < ActiveRecord::Base
       FavoriteBar.create(user: self, bar: bar)
       puts "You have added the bar: #{bar_name}, to your favorite bar list!"
     end
+    options(self)
   end
 
   def remove_bar
@@ -109,6 +108,7 @@ class User < ActiveRecord::Base
         remove_bar
       end
     end
+    options(self)
   end
 #this last end is for the class
 end
