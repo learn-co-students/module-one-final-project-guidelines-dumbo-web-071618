@@ -1,14 +1,30 @@
+User.destroy_all
+Artist.destroy_all
+Song.destroy_all
+Playlistsong.destroy_all
+Genre.destroy_all
+Playlist.destroy_all
+
 ### ROCK ###
-cb = Artist.create(name: "Courtney Barnette", song_id: 1)
-
-song1 = Song.create(name: "City Looks Pretty", artist_id: 1, genre_id: 1, playlistsong_id: 1)
-
-pls1 = Playlistsong.create(playlist_id: 1, song_id: 1)
-
-rock = Genre.create(name: "rock", song_id: 1)
-
-pl1 = Playlist.create(name: "jamz", user_id: 1, playlistsong_id: 1)
-
+coder38 = User.create(name: "coder38")
+courtney_barnette = Artist.create(name: "Courtney Barnette")
+rock = Genre.create(name: "rock")
+jamz = Playlist.create(name: "jamz", user: coder38)
+city_looks_pretty = Song.create(name: "City Looks Pretty", artist: courtney_barnette, genre: rock)
+playlistsong1 = Playlistsong.create(playlist: jamz, song: city_looks_pretty)
+# 
+# Song.create(name: "I'm Not Your Mother", artist_id: 1, genre_id: 1, playlistsong_id: 2)
+# Playlistsong.create(playlist_id: 1, song_id: 2)
+#
+# Song.create(name: "Pedestrian at Best", artist_id: 1, genre_id: 2)
+#
+# Artist.create(name: "Joey Vantes")
+# Song.create(name: "64", artist_id: 2, genre_id: 2, playlistsong_id: 3)
+# Genre.create(name: "rap")
+# Playlistsong.create(playlist_id: 1, song_id: 4)
+#
+# Song.create(name: "Bad", artist_id: 2, genre_id: 2, playlistsong_id: 4)
+# Playlistsong.create(playlist_id: 1, song_id: 5)
 
 
 # Song.create(name: "I'm Not Your Mother",
