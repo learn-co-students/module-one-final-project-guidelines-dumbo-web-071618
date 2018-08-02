@@ -39,8 +39,8 @@ class SoldierBattlefield < ActiveRecord::Base
         monster_turn
       end
     else
-       monster.hp +=10
-       
+       monster.hp +=15
+
     end
   end
 
