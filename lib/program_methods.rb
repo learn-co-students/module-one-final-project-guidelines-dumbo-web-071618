@@ -13,7 +13,8 @@ feelings = [
 options = ["Save this resource for a friend", "Feel again", "Exit the program"]
 
 def welcome
-  puts "We're here to be your ear."
+  pastel = Pastel.new
+  puts pastel.yellow("We're here to be your ear.")
   sleep(1)
   system "clear"
 end
@@ -34,11 +35,9 @@ def ask_for_name
 end
 
 def ask_for_name_again
-    puts "Welcome! Remind me of your name again? (please use the same name you typed before)"
+    puts "Welcome back! Remind us of your name again? (please use the same name you typed before)"
     name = gets.chomp.downcase
     system "clear"
-    puts "Hi #{name.capitalize}!"
-    sleep(1)
     return name
 end
 
@@ -51,6 +50,7 @@ def choose_feeling(feelings)
   system "clear"
   prompt = TTY::Prompt.new
   feeling = prompt.select("How do you feel? Please choose a feeling.", feelings)
+  system "clear"
   return feeling
 end
 
@@ -72,7 +72,9 @@ def more_options(options)
 end
 
 def ask_for_friend_name
-  puts "That's so sweet! Who do you want to save it for (please type their first name)?"
+  pastel = Pastel.new
+  puts pastel.bright_magenta("That's so sweet!")
+  puts "Who do you want to save it for (please type their first name)?"
   name = gets.chomp.downcase
   system "clear"
   return name
@@ -83,8 +85,10 @@ def save_for_friend(friend_name, resource_string)
   friend.save_resource(resource_string)
   friend.show_resources
   puts "Your gift for #{friend_name.capitalize} is waiting!"
+  goodbye
 end
 
 def goodbye
-  puts "Goodbye, you beautiful you!"
+  pastel = Pastel.new
+  puts pastel.yellow("Goodbye, you beautiful you!")
 end

@@ -15,6 +15,7 @@ feelings = [
 options = ["Save this resource for a friend", "Feel again", "Exit the program"]
 
 def run(feelings, options)
+  pastel = Pastel.new
   welcome
   input = been_here
   if input == "Yes" #asking if they've been here before
@@ -27,7 +28,7 @@ def run(feelings, options)
     input = ask_for_feeling #asking if they want to feel
     if input == "Yes"
       feeling = choose_feeling(feelings) #feeling = string value of feeling choice
-      puts resource_string = Resource.random(feeling) #resource_string is the the resource (string)
+      puts pastel.yellow(resource_string = Resource.random(feeling)) #resource_string is the the resource (string)
       input = do_you_want_to_save #asking if they want to save resource
         if input == "Yes"
           save_option(name, resource_string)

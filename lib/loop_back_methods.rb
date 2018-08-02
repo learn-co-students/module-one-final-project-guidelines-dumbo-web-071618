@@ -1,8 +1,9 @@
 
 
 def feel_again_loop(feelings,feeling,name,resource_string,options)
+  pastel = Pastel.new
   feeling = choose_feeling(feelings) #feeling = string value of feeling choice
-  puts resource_string = Resource.random(feeling) #resource_string is the the resource (string)
+  puts pastel.yellow(resource_string = Resource.random(feeling)) #resource_string is the the resource (string)
   input = do_you_want_to_save #asking if they want to save resource
     if input == "Yes"
       save_option(name, resource_string)
@@ -29,10 +30,11 @@ def feel_again_loop(feelings,feeling,name,resource_string,options)
 end
 
 def play_again_loop(feelings,options, name)
+  pastel = Pastel.new
   input = ask_for_feeling #asking if they want to feel
   if input == "Yes"
       feeling = choose_feeling(feelings) #feeling = string value of feeling choice
-      puts resource_string = Resource.random(feeling) #resource_string is the the resource (string)
+      puts pastel.yellow(resource_string = Resource.random(feeling)) #resource_string is the the resource (string)
       input = do_you_want_to_save #asking if they want to save resource
           if input == "Yes"
               save_option(name, resource_string)
@@ -57,6 +59,6 @@ def play_again_loop(feelings,options, name)
                     end
              end
     elsif input == "No" #asking if they want to feel
-      goodbye    
+      goodbye
     end
 end

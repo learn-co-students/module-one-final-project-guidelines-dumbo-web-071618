@@ -11,9 +11,10 @@ class Friend <ActiveRecord::Base
   end
 
   def self.friend_exists(name)
+    pastel = Pastel.new
     if friend = Friend.find_by(name: name)
       puts "#{name.capitalize}, these are your resources!"
-      puts friend.show_resources
+      puts pastel.yellow(friend.show_resources)
     else
       puts "Sorry, we couldn't find you!"
     end
