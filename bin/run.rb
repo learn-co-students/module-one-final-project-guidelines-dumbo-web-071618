@@ -1,10 +1,41 @@
 require_relative '../config/environment'
 
-display_title
+# courtnebi
 
-sleep(3)
+# song_names = Song.all.map do |song|
+#   song.name
+# end
+#
+# puts song_names
 
-system "clear"
+# song_artists = Song.all.map do |song|
+#   song.artist
+# end
+#
+# puts song_artists
 
-# puts Song.all.map(&:name)
-prompt_user_status
+
+
+
+# puts courtney_songs.map do |song|
+#   song.name
+# end
+# puts courtney_songs.map do |song|
+#   song.artist
+# end
+# puts courtney_songs.map do |song|
+#   song.genre
+# end
+
+# display_title
+#
+# sleep(3)
+#
+# system "clear"
+#
+# prompt_user_status
+#
+# choose_action
+
+puts Song.all
+binding.pry
