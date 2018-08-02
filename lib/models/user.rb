@@ -63,8 +63,11 @@ class User < ActiveRecord::Base
     YelpAdapter.search(self.location).each do |bar|
       Bar.create(name: bar["name"], rating: bar["rating"], location: bar["location"]["display_address"].join(" "))
     end
-    binding.pry
-    Bar.find(:all, :order => "id desc", :limit => 5).reverse
+    barlist = []
+    Bar.order(id: :desc).take(5).each do |bar|
+      barlist << "#{bar.name} -- #{bar.location}, #{bar.rating} stars."
+    end
+    puts barlist
   end
 
   def add_bar

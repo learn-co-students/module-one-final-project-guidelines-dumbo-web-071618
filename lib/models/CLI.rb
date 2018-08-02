@@ -21,7 +21,7 @@ puts pastel.cyan(font.write("to"))
     user.remove_bar
   end
 
-  binding.pry
+  #binding.pry
 
   puts "hello"
 

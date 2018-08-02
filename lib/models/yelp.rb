@@ -15,7 +15,6 @@ DEFAULT_LOCATION = "New York, NY"
 SEARCH_LIMIT = 5
 
 class YelpAdapter
-
   def self.search(location, term='bar')
     url = "#{API_HOST}#{SEARCH_PATH}"
     params = {
