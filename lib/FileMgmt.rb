@@ -34,12 +34,14 @@ class FileMgmt
     #TODO:-11: go back and create .ignore file
     def self.scan(file_path)
         todo_hash = {}
-        file = ProjectFile.find_or_create_by(file_path: file_path.path)
+        file = ProjectFile.find_or_initialize_by(file_path: file_path.path)
+        file.user = User.logged_in_user
+        file.save
         # binding.pry
         if File.extname(file_path) != ".db" && self.changed?(file_path.path) || file.sha == nil
+            self.remove_old_todos(file_path.path)
             file.update(sha: Digest::SHA1.file(file_path).hexdigest)
             File.foreach(file_path.path).with_index do |line, line_num|
-                
                 if line.include?("#{self.extensions[File.extname(file_path)]}TODO:")
                     # binding.pry
                     text = "#{line}"
@@ -60,7 +62,7 @@ class FileMgmt
                 all_todos_hash[file_path.path] = tmp_holder
             end
         end
-        self.replace_old_todos(all_todos_hash)
+        self.persist_scans(all_todos_hash)
         all_todos_hash
     end
 
@@ -99,13 +101,16 @@ class FileMgmt
                 # binding.pry
                 if priority_comment_split.size == 1
                     new_todo = User.logged_in_user.todos.build(comment: comment, line_number: line_num, priority: 0)
+                    new_todo.project_file = ProjectFile.find_by(file_path: file_path)
                 elsif priority_comment_split.size == 2
                     # binding.pry
                     priority_comment_split[0] = self.priority_bounds(priority_comment_split[0].to_i)
                     new_todo = User.logged_in_user.todos.build(comment:priority_comment_split[1], line_number: line_num, priority:priority_comment_split[0])
+                    new_todo.project_file = ProjectFile.find_by(file_path: file_path)
+
                 end
                 if new_todo != nil
-                    new_todo.project_file = ProjectFile.find_by(file_path: file_path)
+                    new_todo.project_file_id = ProjectFile.find_by(file_path: file_path).id
                     new_todo.save
                 end
             end
@@ -113,12 +118,19 @@ class FileMgmt
         scans
     end
 
-    def self.replace_old_todos(all_todos_hash)
-        all_todos_hash.each do |file_path, comments|
-            todo_ids = User.logged_in_user.todos.map {|todo| todo.id}
+    #TODO: MORE FUCKING TESTS
+    #TODO: MORE FUCKING TESTS
+    #TODO: MORE FUCKING TESTS
+    #TODO: MORE FUCKING TESTS
+    #TODO: MORE FUCKING TESTS
+    #TODO: testttttt
+    def self.remove_old_todos(file_path)
+        files_todos = User.logged_in_user.project_files.find_by(file_path: file_path)
+        if !ProjectFile.all.where(file_path: file_path).first.user.todos.empty?
+            binding.pry
+            todo_ids = files_todos.todos.map{|todo| todo.id}
             Todo.destroy(todo_ids)
         end
-        self.persist_scans(all_todos_hash)
     end
 
     def self.changed?(file_path)
