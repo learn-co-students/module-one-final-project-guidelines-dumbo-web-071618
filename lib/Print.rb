@@ -9,11 +9,18 @@ class Print
 
 
     Todo.all.each do |todo|
+<<<<<<< HEAD
       temp_user = User.find(todo.user_id).name.center(rs)
       temp_file_path = todo.project_file.file_path.split("/")[-2..-1].join("/").center((rs-3))
       temp_file_path = "...#{temp_file_path[-(rs-3)..-1].center(rs)}" if temp_file_path.length > rs
       temp_comment = todo.comment[0..rs].center(rs)
       temp_category_id = Category.find(todo.category_id).name.center(rs)
+=======
+      temp_user = User.find(todo.user_id).name.center(25)
+      temp_file_path = todo.project_file.file_path.center(25)
+      temp_comment = todo.comment[0..49].center(50)
+      temp_category_id = Category.find(todo.category_id).name.center(25)
+>>>>>>> master
 
       puts sprintf("%#{rs}s %#{rs}s %#{rs}s %#{rs}s", temp_user,temp_file_path,temp_comment,temp_category_id)
 
