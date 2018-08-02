@@ -15,7 +15,7 @@ options = ["Save this resource for a friend", "Feel again", "Exit the program"]
 def welcome
   pastel = Pastel.new
   puts pastel.yellow("We're here to be your ear.")
-  sleep(1)
+  sleep(2)
   system "clear"
 end
 

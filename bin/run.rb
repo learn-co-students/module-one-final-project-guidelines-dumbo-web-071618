@@ -14,8 +14,11 @@ feelings = [
 
 options = ["Save this resource for a friend", "Feel again", "Exit the program"]
 
+
 def run(feelings, options)
   pastel = Pastel.new
+  font = TTY::Font.new(:doom)
+  puts font.write("Ear 4 u")
   welcome
   input = been_here
   if input == "Yes" #asking if they've been here before
