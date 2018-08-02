@@ -11,12 +11,43 @@ class Soldier < ActiveRecord::Base
   def init
     self.hp = 10
     self.ability = arr_abilities.sample
-    self.level = 1
+    self.level = 0
+    @weapon = [2,5]
   end
 
   def attack(monster)
-    monster.hp -= ([1, 2].sample)
+    monster.hp -= (@weapon.sample)
   end
+
+  def switch(weapon)
+    @weapon = weapon
+  end
+
+  # def game_loop
+  #   if (!monster_dead? && !soldier_dead?)
+  #     player_choice = monster_menu
+  #     system "clear"
+  #     if player_choice == 'Attack'
+  #       arr_comments = ["Die monster!", "OHHHHH Shiit hes about to explode!", "This is our only chance!"]
+  #       puts arr_comments.sample
+  #       sleep 1
+  #     elsif player_choice == 'Run Away!'
+  #       puts 'Coward! A soldier never turns his back!'
+  #       return
+  #     elsif player_choice == 'Check HP'
+  #       puts "Your HP: #{soldier.hp}"
+  #       # next
+  #     end
+  #     player_turn
+  #     monster_turn
+  #   elsif monster_dead?
+  #     puts "YOU LOST UGLY!"
+  #   elsif soldier_dead
+  #   puts "Soldier DOWN SOLDIER DOWN!!! #{monster.name} has TAKEN OVER!"
+  #     # player_turn
+  #     # monster_turn
+  #   end
+  # end
 
   def self.setup_user(soldier_name)
     if soldier = Soldier.find_by_name(soldier_name)

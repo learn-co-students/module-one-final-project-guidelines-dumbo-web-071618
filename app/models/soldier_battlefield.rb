@@ -25,8 +25,12 @@ class SoldierBattlefield < ActiveRecord::Base
   def game_loop
     while (!monster_dead? && !soldier_dead?)
       player_choice = monster_menu
-
-      if player_choice == 'Run Away!'
+      system "clear"
+      if player_choice == 'Attack'
+        arr_comments = ["Die monster!", "OHHHHH Shiit hes about to explode!", "This is our only chance!"]
+        puts arr_comments.sample
+        sleep 1
+      elsif player_choice == 'Run Away!'
         puts 'Coward! A soldier never turns his back!'
         return
       elsif player_choice == 'Check HP'
@@ -56,19 +60,19 @@ class SoldierBattlefield < ActiveRecord::Base
     # input
     soldier.attack(monster)
     puts "Monster HP: #{monster.hp}"
+    if soldier_dead?
+      puts "Soldier DOWN SOLDIER DOWN!!! #{monster.name} has TAKEN OVER!"
+    end
   end
 
   def monster_turn
-    puts "Monster is attacking you!"
-    self.monster.attack(self.soldier)
-    puts " another message..."
-  end
-
-  def find_monster
-    monster_found = Battlefield.all.select do |battlefields|
-      battlefields.monster_id == self.soldier_id
+    if !monster_dead?
+      puts "Monster is attacking you!"
+      monster.attack(soldier)
+      puts " AHHHHH!!!"
+    else monster_dead?
+      puts "YOU LOST UGLY!"
     end
-    monster_found
   end
 
   def monster_dead?
