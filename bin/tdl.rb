@@ -7,6 +7,6 @@ require_relative '../config/environment'
 puts Digest::SHA1.file "/Users/agent/Development/code/module-one-final-project-guidelines-dumbo-web-071618/app/models/Todo.rb"
 puts Digest::SHA1.file "/Users/agent/Development/code/module-one-final-project-guidelines-dumbo-web-071618/app/models/Todo.rb"
 
-
+#TODO:1: comment
 
 Pry.start

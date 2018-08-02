@@ -21,11 +21,11 @@ class User < ActiveRecord::Base
 
     def find_by_file_path(file_path)
       Todo.all.select do |todo|
-        todo.file_path == file_path
+        todo.project_file.file_path == file_path
       end
     end
 
-    #TODO: refactor this
+    #TODO:3: refactor this
     def select_specific_todos
     array = self.list_all_todos
     array_of_file_path = array.map{|todo| todo.project_file.file_path }.uniq
