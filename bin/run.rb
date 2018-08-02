@@ -1,5 +1,5 @@
 require_relative '../config/environment'
-# kevin = Soldier.first
+
 system "clear"
 font = TTY::Font.new(:doom)
 pastel = Pastel.new
@@ -17,14 +17,16 @@ soldier_data = Soldier.setup_user(user_name)
 ## -------------
 
 # Setup battlefield and monster
-monster_data = Battlefield.first.monster
+# monster_data = Battlefield.first.monster
+monster_data = Battlefield.all.where.not(:name => nil).sample.monster
 level_1 = SoldierBattlefield.initialize_battle(
-  soldier_data, monster_data
-)
+  soldier_data, monster_data)
 ## --------------
 # binding.pry
 
 ## Initiate Main Game Loop
+
+
 
   ## get user action from main menu
 player_choice = main_menu
@@ -39,3 +41,9 @@ elsif player_choice == 'Exit'
 end
 
 ## -----------
+# levels = Battlefield.all
+#   find_monster = levels.select do |level|
+#     level.monster_id == soldier_data.level
+#   end
+#
+#   monster_data = find_monster[0].monster

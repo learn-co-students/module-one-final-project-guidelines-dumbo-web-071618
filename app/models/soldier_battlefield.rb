@@ -5,11 +5,8 @@ class SoldierBattlefield < ActiveRecord::Base
 
   # this methods sets up battle
   def self.initialize_battle(soldier_data, monster_data)
-    game = SoldierBattlefield.new
-    game.monster = monster_data
-    game.soldier = soldier_data
-    game.save
-    game
+    soldier_data.battlefields << Battlefield.all.sample
+    soldier_data.soldier_battlefields.last
   end
 
   def menu
@@ -64,6 +61,13 @@ class SoldierBattlefield < ActiveRecord::Base
       puts "Soldier DOWN SOLDIER DOWN!!! #{monster.name} has TAKEN OVER!"
     end
   end
+
+  # def next_level
+  #   if monster_dead?
+  #     soldier.level += 1
+  #     soldier.save
+  #   end
+  # end
 
   def monster_turn
     if !monster_dead?
