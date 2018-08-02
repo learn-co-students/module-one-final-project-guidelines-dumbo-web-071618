@@ -24,9 +24,9 @@ class User < ActiveRecord::Base
     self.find_by(name: username) || self.login
   end
 
-  def self.create_user
-    puts "Please enter a new username: "
-    username = gets.chomp.split(" ").map{|w| w.capitalize}.join(" ")
+  def self.create_user(username)
+    # puts "Please enter a new username: "
+    # username = gets.chomp.split(" ").map{|w| w.capitalize}.join(" ")
     if self.find_by(name: username)
       puts "Username already taken."
       self.create_user
@@ -63,7 +63,8 @@ class User < ActiveRecord::Base
     YelpAdapter.search(self.location).each do |bar|
       Bar.create(name: bar["name"], rating: bar["rating"], location: bar["location"]["display_address"].join(" "))
     end
-    Bar.find(:all, :order => "id desc", limit => 5).reverse
+    binding.pry
+    Bar.find(:all, :order => "id desc", :limit => 5).reverse
   end
 
   def add_bar
