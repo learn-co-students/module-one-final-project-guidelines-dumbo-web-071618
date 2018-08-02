@@ -11,8 +11,24 @@ courtney_barnette = Artist.create(name: "Courtney Barnette")
 rock = Genre.create(name: "rock")
 jamz = Playlist.create(name: "jamz", user: coder38)
 city_looks_pretty = Song.create(name: "City Looks Pretty", artist: courtney_barnette, genre: rock)
-playlistsong1 = Playlistsong.create(playlist: jamz, song: city_looks_pretty)
-# 
+Playlistsong.create(playlist: jamz, song: city_looks_pretty)
+
+not_your_mother = Song.create(name: "I'm Not Your Mother", artist: courtney_barnette, genre: rock)
+Playlistsong.create(playlist: jamz, song: not_your_mother)
+
+pedestrian = Song.create(name: "Pedestrian at Best", artist: courtney_barnette, genre: rock)
+Playlistsong.create(playlist: jamz, song: pedestrian)
+
+joey_vantes = Artist.create(name: "Joey Vantes")
+rap = Genre.create(name: "rap")
+six_four = Song.create(name: "64", artist: joey_vantes, genre: rap)
+playlistsong1 = Playlistsong.create(playlist: jamz, song: six_four)
+
+bad = Song.create(name: "Bad", artist: joey_vantes, genre: rap)
+Playlistsong.create(playlist: jamz, song: bad)
+
+tonight = Song.create(name: "Tonight", artist: joey_vantes, genre: rap)
+Playlistsong.create(playlist: jamz, song: tonight)
 # Song.create(name: "I'm Not Your Mother", artist_id: 1, genre_id: 1, playlistsong_id: 2)
 # Playlistsong.create(playlist_id: 1, song_id: 2)
 #
