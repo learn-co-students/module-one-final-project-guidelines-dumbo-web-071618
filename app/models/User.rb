@@ -36,8 +36,9 @@ class User < ActiveRecord::Base
         todo.project_file.file_path == file_path
       end
 
+
     array_of_line_number_and_comment = array.map{|todo| "#{todo.line_number} #{todo.comment}"}
-    line_and_comment = prompt.select("Choose what todo you would like to go to.", array_of_line_number_and_comment)
+    line_and_comment = prompt.select("Choose what todo you would like to go to.", array_of_line_number_and_comment.sort_by{|todo| todo.priority})
     FileMgmt.open_at_line(line_and_comment.split(" ")[0].to_i,file_path)
     end
 
