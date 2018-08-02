@@ -2,10 +2,12 @@ require 'catpix'
 
 def welcome
 
-  puts "Welcome Soldier, what is your name?"
+  puts "Halt..."
+  sleep 1
+  puts "Who goes there??"
 end
 
-def menu
+def main_menu
   prompt = TTY::Prompt.new
   choice = prompt.select("Choose your destiny?") do |menu|
     menu.choice 'Choose your Battlefield'

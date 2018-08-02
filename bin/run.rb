@@ -6,10 +6,10 @@ pastel = Pastel.new
 puts pastel.yellow(font.write("LEARN.co"))
 puts "Presents An Original..."
 # Locate user by name, if not found, create user
-sleep 3
+sleep 2
 puts pastel.cyan.on_bright_black(font.write("Learn"))
 puts pastel.cyan.on_bright_black(font.write("Monster"))
-sleep 2
+sleep 1
 welcome
 user_name = gets.chomp
 system "clear"
@@ -23,5 +23,19 @@ level_1 = SoldierBattlefield.initialize_battle(
 )
 ## --------------
 # binding.pry
-menu
-level_1.game_loop
+
+## Initiate Main Game Loop
+
+  ## get user action from main menu
+player_choice = main_menu
+
+  ## handle action based on user choice
+if player_choice == 'Choose your Battlefield'
+  level_1.game_loop
+elsif player_choice == 'Get new Weapons'
+  puts "Bummer you got no weapons!... Yet"
+elsif player_choice == 'Exit'
+  puts "Come back when you grow up ... CHILD"
+end
+
+## -----------

@@ -52,10 +52,12 @@ class Soldier < ActiveRecord::Base
   def self.setup_user(soldier_name)
     if soldier = Soldier.find_by_name(soldier_name)
       puts "Welcome back #{soldier.name} your current hp is #{soldier.hp} and your current ability is #{soldier.ability}."
-      puts "You last fought at #{soldier.battlefields.last.name}." unless soldier.battlefields.empty?
+      puts "You last fought at #{soldier.battlefields.last.name}." unless soldier.battlefields.length < 0
     else
       soldier = Soldier.create(name: soldier_name)
-      puts "Welcome #{soldier.name} your hp is #{soldier.hp} and your special ability is #{soldier.ability}."
+      puts "Must be a new soldier ... Fresh Meat! You are starting from the TOP!"
+      sleep 3
+      puts "Good luck #{soldier.name} your hp is #{soldier.hp} and your special ability is #{soldier.ability}."
     end
     soldier
   end
