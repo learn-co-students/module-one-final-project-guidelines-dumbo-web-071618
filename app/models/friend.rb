@@ -10,11 +10,15 @@ class Friend <ActiveRecord::Base
     self.resources.map {|r| r.resource}.uniq
   end
 
+
   def self.friend_exists(name)
     pastel = Pastel.new
     if friend = Friend.find_by(name: name)
       puts "#{name.capitalize}, these are your resources!"
-      puts pastel.yellow(friend.show_resources)
+      friend.show_resources.each do |resource|
+        puts pastel.bright_magenta"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        puts pastel.yellow(resource)
+      end
     else
       puts "Sorry, we couldn't find you!"
     end

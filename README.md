@@ -25,3 +25,6 @@ Welcome to *Ear 4 U*, an application that is empathetic and validates the userâ€
 ## Authors
 - **Scarlett Perry**
 - **Rosa Tu**
+
+## Acknowledgments
+- Big thank you to Prince Wilson, Tony Lam, & Eric Kim
