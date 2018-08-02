@@ -20,24 +20,30 @@ class SoldierBattlefield < ActiveRecord::Base
   end
   # ************ game loop ********** #
   def game_loop
-    while (!monster_dead? && !soldier_dead?)
-      player_choice = monster_menu
-      system "clear"
-      if player_choice == 'Attack'
-        arr_comments = ["Die monster!", "OHHHHH Shiit hes about to explode!", "This is our only chance!"]
-        puts arr_comments.sample
-        sleep 1
-      elsif player_choice == 'Run Away!'
-        puts 'Coward! A soldier never turns his back!'
-        return
-      elsif player_choice == 'Check HP'
-        puts "Your HP: #{soldier.hp}"
-        next
+    if !monster_dead?
+      while (!monster_dead? && !soldier_dead?)
+        player_choice = monster_menu
+        system "clear"
+        if player_choice == 'Attack'
+          arr_comments = ["Die monster!", "OHHHHH Shiit hes about to explode!", "This is our only chance!"]
+          puts arr_comments.sample
+          sleep 1
+        elsif player_choice == 'Run Away!'
+          puts 'Coward! A soldier never turns his back!'
+          return
+        elsif player_choice == 'Check HP'
+          puts "Your HP: #{soldier.hp}"
+          next
+        end
+        player_turn
+        monster_turn
       end
-      player_turn
-      monster_turn
+    else
+       monster.hp +=10
+       
     end
   end
+
 
   # this is the menu that user will interact with
   def monster_menu
