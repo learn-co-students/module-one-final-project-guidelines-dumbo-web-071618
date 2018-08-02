@@ -5,9 +5,14 @@ feelings = [
   "bored/unmotivated/tired/lazy",
   "hungry/thirsty",
   "anxious/nervous/confused",
-  "lonely/sad/hopeless"
+  "lonely/sad/hopeless",
+  "happy/grateful/joyful",
+  "determined/committed/eager",
+  "code-hungry",
+  "insecure/unconfident"
 ]
-options = ["Save this resource for a friend", "Exit the program", "Feel again"]
+
+options = ["Save this resource for a friend", "Feel again", "Exit the program"]
 
 def run(feelings, options)
   welcome
@@ -45,11 +50,11 @@ def run(feelings, options)
             elsif input == "Feel again"
               feel_again_loop(feelings,feeling,name,resource_string,options)
             end
+          end
     elsif input == "No" #asking if they want to feel
         goodbye
     end
   end
-end
 end
 
 run(feelings, options)

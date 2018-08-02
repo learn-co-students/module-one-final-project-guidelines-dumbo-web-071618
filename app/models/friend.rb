@@ -7,7 +7,7 @@ class Friend <ActiveRecord::Base
   end
 
   def show_resources
-    puts self.resources.map {|r| r.resource}
+    puts self.resources.map {|r| r.resource}.uniq
   end
 
   def self.friend_exists(name)

@@ -8,7 +8,9 @@ class Resource <ActiveRecord::Base
 
   def self.random(feeling)
     all = self.all_for_feeling(feeling)
-    all.map {|f|f.resource}.sample
+    all_resources = all.map {|f|f.resource}
+    friend_resources = []
+    friend_resources << (all_resources - friend_resources).sample
   end
 
 end

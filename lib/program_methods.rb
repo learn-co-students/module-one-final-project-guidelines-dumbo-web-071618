@@ -3,10 +3,14 @@ feelings = [
   "bored/unmotivated/tired/lazy",
   "hungry/thirsty",
   "anxious/nervous/confused",
-  "lonely/sad/hopeless"
+  "lonely/sad/hopeless",
+  "happy/grateful/joyful",
+  "determined/committed/eager",
+  "code-hungry",
+  "insecure/unconfident"
 ]
 
-options = ["Save this resource for a friend", "Exit the program", "Feel again"]
+options = ["Save this resource for a friend", "Feel again", "Exit the program"]
 
 def welcome
   puts "Hello, we're here to be your ear."
@@ -19,7 +23,7 @@ end
 
 def ask_for_name
     puts "Hi friend, what's your name?"
-    name = gets.chomp
+    name = gets.chomp.downcase
     system "clear"
     puts "Hi #{name}!"
     sleep(1)
@@ -28,7 +32,7 @@ end
 
 def ask_for_name_again
     puts "Welcome! Remind me of your name again? (please use the same name you typed before)"
-    name = gets.chomp
+    name = gets.chomp.downcase
     system "clear"
     puts "Hi #{name}!"
     sleep(1)
@@ -66,7 +70,7 @@ end
 
 def ask_for_friend_name
   puts "That's so sweet! Who do you want to save it for (please type their first name)?"
-  name = gets.chomp
+  name = gets.chomp.downcase
   system "clear"
   return name
 end
