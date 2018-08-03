@@ -25,7 +25,9 @@ Our program also uses the ruby gem Thor that allows us to call on different meth
  * tdl user - The user flag prompts the user with only file paths that have TODOs in them and makes it selectable to the user. The user can then go into the file path to select a TODO and go into that file path and line number where it is located.
 * editor.
  * tdl editor - The editor flag allows the user to specify to the app what editor they are using. By doing so, the program will be able to open TODOs. Currently the app only supports Atom, VS Code and Sublime.
- 
+ * logo
+  * tdl l - Prints our beautiful team logo.
+
 ---
 
 ## Built With
