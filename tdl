@@ -11,8 +11,12 @@ class TDL < Thor
 
   desc "scan", "Scan all files"
   method_option :scan, :aliases => "-s", :desc => "Scan all script files in present working directory"
-  def scan
-    FileMgmt.scan_all(FileMgmt.get_all_files_in_dir)
+  def scan(path = "")
+    if path == ""
+      FileMgmt.scan_all(FileMgmt.get_all_files_in_dir)
+    else
+      FileMgmt.scan_all(FileMgmt.get_all_files_in_dir(path))
+    end
   end
 
   desc "user", "Returns all todo's for logged in user"

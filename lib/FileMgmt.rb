@@ -64,6 +64,7 @@ class FileMgmt
             end
         end
         self.persist_scans(all_todos_hash)
+        puts "All files is #{Dir.pwd.colorize(:red)} were scanned!"
         all_todos_hash
     end
 
@@ -82,14 +83,17 @@ class FileMgmt
         if selection == 1
             u = User.logged_in_user
             u.default_editor = 'code'
+            u.save
             puts "Your editor is now set to: Visual Studio Code"
         elsif selection == 2
             u = User.logged_in_user
             u.default_editor = 'atom'
+            u.save
             puts "Your editor is now set to: Atom"
         elsif selection == 3
             u = User.logged_in_user
             u.default_editor = 'subl'
+            u.save
             puts "Your editor is now set to: Sublime"
         end
     end
@@ -129,16 +133,14 @@ class FileMgmt
         scans
     end
 
-    #TODO: MORE FUCKING TESTS1
-    #TODO: MORE FUCKING TESTS2
-    #TODO: MORE FUCKING TESTS3
-    #TODO: MORE FUCKING TESTS4
-    #TODO: MORE FUCKING TESTS5
-    #TODO: testttttt
+    #TODO:1: Refactor this method
+    #TODO:2: Pull this out into its own method
+    #TODO:3: Create tests for this method
+    #TODO:4: Ask prince about this line
+    #TODO:5: testttttt
     def self.remove_old_todos(file_path)
         files_todos = User.logged_in_user.project_files.find_by(file_path: file_path)
         if !ProjectFile.all.where(file_path: file_path).first.user.todos.empty?
-            binding.pry
             todo_ids = files_todos.todos.map{|todo| todo.id}
             Todo.destroy(todo_ids)
         end

@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
             array = array.select do |todo|
             todo.project_file.file_path == file_path
           end
-        array_of_line_number_and_comment = array.sort_by{|todo| todo.priority}.map{|todo| "#{todo.line_number} #{todo.comment} Priority Level : #{todo.priority}"}
+        array_of_line_number_and_comment = array.sort_by{|todo| todo.priority}.map{|todo| "#{sprintf("%5d %-50s Priority Level : %1d",todo.line_number, todo.comment, todo.priority)}"}
         line_and_comment = prompt.select("Choose what todo you would like to go to.",array_of_line_number_and_comment<<"back")
           if line_and_comment == "back"
             next
