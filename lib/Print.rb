@@ -2,19 +2,19 @@ require 'colorize'
 class Print
 
   def self.print_all
-    window_size = ENV['COLUMNS'].to_i
+    window_size = 204
     rs = window_size/4 #=>rs is relative size
-    puts sprintf("%#{rs}s %#{rs}s %#{rs}s", "Name".center(rs),"File Path".center(rs),"Comment".center(rs))
-    puts sprintf("%#{rs}s %#{rs}s %#{rs}s", "----".center(rs),"---------".center(rs),"-------".center(rs))
+    puts sprintf("%-#{rs-20}s %-#{rs+20}s %-#{rs}s", "Name","File Path","Comment")
+    puts sprintf("%-#{rs-20}s %-#{rs+20}s %-#{rs}s", "----","---------","-------")
 
 
     Todo.all.each do |todo|
-      temp_user = User.find(todo.user_id).name.center(rs)
-      temp_file_path = todo.project_file.file_path.split("/")[-2..-1].join("/").center((rs-3))
-      temp_file_path = "...#{temp_file_path[-(rs-3)..-1].center(rs)}" if temp_file_path.length > rs
-      temp_comment = todo.comment[0..rs].center(rs)
+      temp_user = User.find(todo.user_id).name
+      temp_file_path = todo.project_file.file_path.split("/")[-2..-1].join("/")
+      temp_file_path = "...#{temp_file_path[-(rs-3)..-1]}" if temp_file_path.length > rs
+      temp_comment = todo.comment[0..rs]
 
-      puts sprintf("%#{rs}s %#{rs}s %#{rs}s", temp_user,temp_file_path,temp_comment)
+      puts sprintf("%-#{rs-20}s %-#{rs+20}s %-#{rs}s", temp_user,temp_file_path,temp_comment)
 
     end
     return nil
