@@ -21,12 +21,41 @@ Our program also uses the ruby gem Thor that allows us to call on different meth
  * tdl all - The all flag allows the user to display all TODOs in the file.
 * scan
  * tdl scan - The scan flag scans the file for new TODOs and adds them into the database. After the scan is done, the terminal should return true.
+
+ <img
+  src="https://preview.ibb.co/nzvrmK/tdl_s.png"
+  title="Piskel editor screenshot"
+  width="1080">
+
 * user
  * tdl user - The user flag prompts the user with only file paths that have TODOs in them and makes it selectable to the user. The user can then go into the file path to select a TODO and go into that file path and line number where it is located.
+
+ <img
+  src="https://preview.ibb.co/dg3cRK/tdl_u_lv2.png"
+  title="Piskel editor screenshot"
+  width="1080">
+
+  <img
+  src="https://preview.ibb.co/iEOcRK/tdl_u.png"
+  title="Piskel editor screenshot"
+  width="1080">
+
 * editor.
  * tdl editor - The editor flag allows the user to specify to the app what editor they are using. By doing so, the program will be able to open TODOs. Currently the app only supports Atom, VS Code and Sublime.
+
+ <img
+  src="https://preview.ibb.co/faArmK/tdl_e.png"
+  title="Piskel editor screenshot"
+  width="1080">
+
  * logo
   * tdl l - Prints our beautiful team logo.
+
+  <img
+  src="https://preview.ibb.co/injLDz/Logo.png"
+  title="Piskel editor screenshot"
+  width="1080">
+
 
 ---
 
