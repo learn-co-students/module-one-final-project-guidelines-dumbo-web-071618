@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 require_relative "config/environment.rb"
 
 class TDL < Thor
@@ -36,3 +37,4 @@ class TDL < Thor
     FileMgmt.set_editor(result)
   end
 end
+TDL.start(ARGV)
