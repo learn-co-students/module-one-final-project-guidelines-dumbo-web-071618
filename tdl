@@ -36,5 +36,12 @@ class TDL < Thor
     end
     FileMgmt.set_editor(result)
   end
+
+  desc "logo", "Displays team logo"
+  method_option :logo, :aliases => "-l", :desc => "Displays team logo"
+  def logo
+    Print.moon
+  end
+
 end
 TDL.start(ARGV)
