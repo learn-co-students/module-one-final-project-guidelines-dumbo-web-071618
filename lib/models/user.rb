@@ -40,17 +40,21 @@ class User < ActiveRecord::Base
       puts "A location has not been specified. Please set your location"
       new_location = gets.chomp.split(" ").map{|w| w.capitalize}.join(" ")
       self.update(location: new_location)
+      options(self)
     else
       puts "Your current location is #{self.location}. Would you like to find a new location?"
       puts "Enter 1 to change your location or 2 to keep your saved location."
       input = gets.chomp.to_i
       case input
         when 1
+          puts "Please enter a new location."
           new_location = gets.chomp.split(" ").map{|w| w.capitalize}.join(" ")
           self.update(location: new_location)
           puts "Your new location is: #{self.location}."
+          options(self)
         when 2
           puts "Location has not been changed"
+          options(self)
         else
           "Invalid input"
           self.ask_location
@@ -60,6 +64,9 @@ class User < ActiveRecord::Base
 
   def find_bar
     puts "These are the bars in your location!"
+    YelpAdapter.search(self.location).each do |bar|
+      Bar.create(name: bar["name"], rating: bar["rating"], location: bar["location"]["display_address"].join(" "))
+    end
     barlist = []
     Bar.order(id: :desc).take(5).each do |bar|
       barlist << "#{bar.name} -- #{bar.location}, #{bar.rating} stars."
@@ -110,5 +117,16 @@ class User < ActiveRecord::Base
     end
     options(self)
   end
+
+  def show_bars
+   puts "These are the bars you've added to your favorites."
+   binding.pry
+   favbar = []
+   bars.each_with_index do |bar, index|
+     favbar << "#{index + 1}) #{bar.name} -- #{bar.location}"
+   end
+   puts favbar
+   options(self)
+ end
 #this last end is for the class
 end

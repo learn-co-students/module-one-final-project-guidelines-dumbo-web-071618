@@ -2,10 +2,10 @@
 #class Cli
 
 def welcome_graphic
-font = TTY::Font.new("3d")
-pastel = Pastel.new
-puts pastel.green(font.write("bar"))
-puts pastel.cyan(font.write("Tender"))
+  font = TTY::Font.new("3d")
+  pastel = Pastel.new
+  puts pastel.green(font.write("bar"))
+  puts pastel.cyan(font.write("Tender"))
 end
 
 
@@ -68,23 +68,27 @@ def ask_location
 end
 #--------------------------
 def options(user)
-  prompt = TTY::Prompt.new
-  variable = prompt.select("what do you want to do?", %w(find_bar add_bar remove_bar exit))
-  if variable == "find_bar"
-     user.find_bar
-  elsif variable == "add_bar"
-     user.add_bar
-  elsif variable == "remove_bar"
-    user.remove_bar
-  elsif variable == "exit"
-    exit_graphic
-  end
+ prompt = TTY::Prompt.new
+ variable = prompt.select("What do you want to do?", [ 'Change Location','Find Bar', 'Add Bar', 'Show Bar', 'Remove Bar', 'Exit'])
+ if variable == "Find Bar"
+    user.find_bar
+ elsif variable == "Add Bar"
+    user.add_bar
+ elsif variable == "Remove Bar"
+   user.remove_bar
+ elsif variable == "Exit"
+   exit_graphic
+ elsif variable == "Show Bar"
+   user.show_bars
+ elsif variable == "Change Location"
+   user.ask_location
+
+ end
 end
 #--------------------------
 def exit_graphic
-font = TTY::Font.new("3d")
-pastel = Pastel.new
-puts pastel.green(font.write("Come"))
-puts pastel.cyan(font.write("Bye!"))
+  font = TTY::Font.new("3d")
+  pastel = Pastel.new
+  puts pastel.cyan(font.write("Bye!"))
 end
 #--------------------------
