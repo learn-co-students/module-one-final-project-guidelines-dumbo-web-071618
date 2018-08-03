@@ -1,11 +1,10 @@
 require_relative "../config/environment.rb"
 
 class FileMgmt
-    @@EDITOR = "atom"
     @@EXTENSIONS = {".rb" => "#", ".html" => "<!-", ".java" => "//", ".js" => "//", ".cpp" => "//", ".h" => "//", ".css" => "//"}
 
     def self.editor
-        @@EDITOR
+        User.logged_in_user.default_editor
     end
 
     def self.extensions
@@ -81,11 +80,17 @@ class FileMgmt
 
     def self.set_editor(selection)
         if selection == 1
-            @@EDITOR = 'code'
+            u = User.logged_in_user
+            u.default_editor = 'code'
+            puts "Your editor is now set to: Visual Studio Code"
         elsif selection == 2
-            @@EDITOR = 'atom'
+            u = User.logged_in_user
+            u.default_editor = 'atom'
+            puts "Your editor is now set to: Atom"
         elsif selection == 3
-            @@EDITOR = 'subl'
+            u = User.logged_in_user
+            u.default_editor = 'subl'
+            puts "Your editor is now set to: Sublime"
         end
     end
 
@@ -124,11 +129,11 @@ class FileMgmt
         scans
     end
 
-    #TODO: MORE FUCKING TESTS
-    #TODO: MORE FUCKING TESTS
-    #TODO: MORE FUCKING TESTS
-    #TODO: MORE FUCKING TESTS
-    #TODO: MORE FUCKING TESTS
+    #TODO: MORE FUCKING TESTS1
+    #TODO: MORE FUCKING TESTS2
+    #TODO: MORE FUCKING TESTS3
+    #TODO: MORE FUCKING TESTS4
+    #TODO: MORE FUCKING TESTS5
     #TODO: testttttt
     def self.remove_old_todos(file_path)
         files_todos = User.logged_in_user.project_files.find_by(file_path: file_path)
