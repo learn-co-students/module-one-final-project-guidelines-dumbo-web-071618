@@ -16,6 +16,7 @@ options = ["Save this resource for a friend", "Feel again", "Exit the program"]
 
 
 def run(feelings, options)
+  system "clear"
   pastel = Pastel.new
   font = TTY::Font.new(:doom)
   puts font.write("Ear 4 u")
