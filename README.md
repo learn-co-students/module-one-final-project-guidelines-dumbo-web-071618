@@ -22,9 +22,15 @@ Welcome to *Ear 4 U*, an application that is empathetic and validates the userâ€
 ## Running the Application
 1. Run `ruby bin/run.rb`
 
+## Contributing
+./CONTRIBUTING.md
+
 ## Authors
 - **Scarlett Perry**
 - **Rosa Tu**
+
+## License
+./LICENSE.md
 
 ## Acknowledgments
 - Big thank you to Prince Wilson, Tony Lam, & Eric Kim

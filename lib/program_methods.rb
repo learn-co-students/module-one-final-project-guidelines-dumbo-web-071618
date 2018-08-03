@@ -15,7 +15,7 @@ options = ["Save this resource for a friend", "Feel again", "Exit the program"]
 def welcome
   pastel = Pastel.new
   puts pastel.yellow("We're here to be your ear.")
-  sleep(2)
+  sleep(3)
   system "clear"
 end
 
@@ -56,7 +56,7 @@ end
 
 def do_you_want_to_save
   prompt = TTY::Prompt.new
-  input = prompt.select("Would you like to keep this in your resources? If not, in the next step you'll have the option to save it for a friend.", %w(Yes No))
+  input = prompt.select("Would you like to keep this in your resources?", %w(Yes No))
 end
 
 def save_option(name, resource_string)
