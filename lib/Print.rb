@@ -50,11 +50,11 @@ class Print
 
   end
 
-  def self.moon(wl = ENV['COLUMNS'].to_i,wh = ENV['LINES'].to_i)
+  def self.moon
 
     system('clear')
-    window_l = wl
-    window_h = wh
+    window_l = ENV['COLUMNS'].to_i
+    window_h = ENV['LINES'].to_i
 
     padding = (" "*window_l).colorize(:color => :light_yellow, :background => :black)
     color_moon = {:color => :light_yellow, :background => :black}
@@ -97,13 +97,15 @@ padding,
 padding,
 padding
 ]
-
-    if window_l < 106
+    if window_l > 0 && window_l < 106
       small_art.each{|x| puts x}
+    elsif window_l == 0 && window_h == 0
+      big_art.each{|x| puts x}
     else
       big_art.each{|x| puts x}
     end
       ((ENV['LINES'].to_i-2)/2-9).times do puts (" "*window_l).colorize(:color => :light_yellow, :background => :black) end
+    puts ""
   end
 
 end

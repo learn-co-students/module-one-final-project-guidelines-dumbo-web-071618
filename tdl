@@ -44,7 +44,7 @@ class TDL < Thor
   desc "logo", "Displays team logo"
   method_option :logo, :aliases => "-l", :desc => "Displays team logo"
   def logo
-    Print.moon(204,63)
+    Print.moon
   end
 
 end
