@@ -42,10 +42,6 @@ class FileMgmt
             self.remove_old_todos(file_path.path)
             file.update(sha: Digest::SHA1.file(file_path).hexdigest)
             File.foreach(file_path.path).with_index do |line, line_num|
-<<<<<<< HEAD
-
-=======
->>>>>>> fix_replace_bug
                 if line.include?("#{self.extensions[File.extname(file_path)]}TODO:")
                     # binding.pry
                     text = "#{line}"
