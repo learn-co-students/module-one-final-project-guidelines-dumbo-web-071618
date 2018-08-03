@@ -9,9 +9,6 @@ ALWAYS use the editor flag to set your editor first.
 ## Getting Started
 
 Prerequisites -> Check the Gemfile for what Gems you will need.
-
-Installing -> To install, ...
-
 ---
 
 ## Deployment
