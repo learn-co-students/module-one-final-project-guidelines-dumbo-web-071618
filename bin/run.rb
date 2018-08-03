@@ -7,8 +7,8 @@ puts pastel.yellow(font.write("LEARN.co"))
 puts "Presents An Original..."
 # Locate user by name, if not found, create user
 sleep 2
-puts pastel.cyan.on_bright_black(font.write("Learn"))
-puts pastel.cyan.on_bright_black(font.write("Monster"))
+puts pastel.cyan.on_bright_black(font.write("Command-Line"))
+puts pastel.cyan.on_bright_black(font.write("Commando"))
 sleep 1
 welcome
 user_name = gets.chomp
@@ -32,7 +32,7 @@ def method_name(soldier_data)
     if player_choice == 'Choose your Battlefield'
       # Setup battlefield and monster
       # monster_data = Battlefield.first.monster
-      soldier_data.hp += 15 if soldier_data.dead?
+       puts "GET BACK ON YOUR FEET, SOLDIER#{soldier_data.hp +=5}" if soldier_data.dead?
       monster_data = Battlefield.all.where.not(:name => nil).sample.monster
       level_1 = SoldierBattlefield.initialize_battle(
         soldier_data, monster_data)
@@ -40,7 +40,7 @@ def method_name(soldier_data)
       level_1.game_loop
       method_name(soldier_data)
     elsif player_choice == 'Get new Weapons'
-      puts "Bummer you got no weapons!... Yet"
+      puts "===== WEAPON DLC (Not included) $19.99 slack Kevin for details!========"
       method_name(soldier_data)
 
     elsif player_choice == 'Who have you Slayed?'

@@ -26,6 +26,10 @@ class Soldier < ActiveRecord::Base
     @weapon = weapon
   end
 
+ def heal
+   self.hp += 4
+ end
+
   def dead?
     self.hp <= 0
   end

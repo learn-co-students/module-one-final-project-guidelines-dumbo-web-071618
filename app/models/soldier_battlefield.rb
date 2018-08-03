@@ -33,9 +33,13 @@ class SoldierBattlefield < ActiveRecord::Base
       elsif player_choice == 'Check HP'
         puts "Your HP: #{soldier.hp}"
         next
+      elsif player_choice == 'Patch your wounds'
+        soldier.heal
+        puts "You have healed"
       end
       player_turn
       monster_turn
+      puts "#{soldier.name} HAS LOST" if soldier_dead?
     end
   end
 
@@ -43,11 +47,11 @@ class SoldierBattlefield < ActiveRecord::Base
   # this is the menu that user will interact with
   def monster_menu
     prompt = TTY::Prompt.new
-    choice = prompt.select("Make your choice carefully") do |menu|
+    choice = prompt.select("Make your choice carefully you're fighting #{monster.name}") do |menu|
       menu.choice 'Attack'
       menu.choice 'Use Weapon'
       menu.choice 'Check HP'
-      menu.choice 'Use Ability'
+      menu.choice 'Patch your wounds'
       menu.choice 'Run Away!'
     end
     choice
@@ -76,7 +80,7 @@ class SoldierBattlefield < ActiveRecord::Base
       monster.attack(soldier)
       puts " AHHHHH!!!"
     else monster_dead?
-      puts "YOU LOST UGLY!"
+      puts "#{monster.name} has lost! "
     end
   end
 
