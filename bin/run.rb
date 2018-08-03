@@ -32,7 +32,7 @@ def method_name(soldier_data)
     if player_choice == 'Choose your Battlefield'
       # Setup battlefield and monster
       # monster_data = Battlefield.first.monster
-       puts "GET BACK ON YOUR FEET, SOLDIER#{soldier_data.hp +=5}" if soldier_data.dead?
+       puts "GET BACK ON YOUR FEET, SOLDIER (YOU GAIN #{soldier_data.hp +=5} HP)" if soldier_data.dead?
       monster_data = Battlefield.all.where.not(:name => nil).sample.monster
       level_1 = SoldierBattlefield.initialize_battle(
         soldier_data, monster_data)
