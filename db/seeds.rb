@@ -8,6 +8,7 @@ Playlist.destroy_all
 ### ROCK ###
 coder38 = User.create(name: "coder38")
 courtney_barnette = Artist.create(name: "Courtney Barnette")
+amirata = Artist.create(name: "amirata")
 rock = Genre.create(name: "rock")
 jamz = Playlist.create(name: "jamz", user: coder38)
 city_looks_pretty = Song.create(name: "City Looks Pretty", artist: courtney_barnette, genre: rock)
@@ -30,6 +31,8 @@ Playlistsong.create(playlist: jamz, song: bad)
 tonight = Song.create(name: "Tonight", artist: joey_vantes, genre: rap)
 Playlistsong.create(playlist: jamz, song: tonight)
 # Song.create(name: "I'm Not Your Mother", artist_id: 1, genre_id: 1, playlistsong_id: 2)
+amirata_song = Song.create(name: "amirata is the best ping pong player", artist: amirata, genre: rap)
+Playlistsong.create(playlist: jamz, song: amirata_song)
 # Playlistsong.create(playlist_id: 1, song_id: 2)
 #
 # Song.create(name: "Pedestrian at Best", artist_id: 1, genre_id: 2)

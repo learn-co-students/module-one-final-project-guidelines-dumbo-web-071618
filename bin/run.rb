@@ -8,7 +8,7 @@ def display_title
   puts pastel.green(font.write("Welcome"))
   puts pastel.yellow(font.write("to"))
   puts pastel.magenta(font.write("MusicBox"))
-  sleep(5)
+  sleep(5,)
 end
 
 display_title
